@@ -15,25 +15,42 @@
 
 %squiggle-styles {
   width: 8rem;
-    height: 12rem;
-    margin: 1rem;
-    border-top-right-radius: 50%;
-    border-bottom-left-radius: 50%;
-    transform: skew(10deg);
+  height: 12rem;
+  margin: 1rem;
+  border: 5px solid #465298;
+  border-top-right-radius: 50%;
+  border-bottom-left-radius: 50%;
+  transform: skew(10deg);
+}
+
+%diamond-styles {
+  width: 6rem;
+  height: 6rem;
+  margin: 2rem;
+  border: 5px solid #465298;
+  transform: rotate(45deg);
+}
+
+%circle-styles {
+  width: 6rem;
+  height: 6rem;
+  margin: 2rem;
+  border: 5px solid #465298;
+  border-radius: 50%;
 }
 
 .game-card {
-  display: flex;
   box-shadow: 0 2px 5px $color-grey-dark;
 
   &__img-wrapper {
     display: flex;
     justify-content: center;
+    align-items: center;
+    min-height: 18rem;
   }
   
   &__image-squiggle--striped {
     @extend %squiggle-styles;
-    border: 5px solid #465298;
     background: repeating-linear-gradient(
       45deg,
       #465298,
@@ -45,7 +62,6 @@
 
   &__image-squiggle--hollow {
     @extend %squiggle-styles;
-    border: 5px solid #465298;
   }
 
   &__image-squiggle--solid {
@@ -53,6 +69,45 @@
     background: #465298;
   }
 
+  &__image-diamond--striped {
+    @extend %diamond-styles;
+    background: repeating-linear-gradient(
+      45deg,
+      #465298,
+      #465298 10px,
+      #fefefe 10px,
+      #fefefe 20px
+    );
+  }
+
+  &__image-diamond--hollow {
+    @extend %diamond-styles;
+  }
+
+  &__image-diamond--solid {
+    @extend %diamond-styles;
+    background: #465298;
+  }
+
+  &__image-circle--striped {
+    @extend %circle-styles;
+    background: repeating-linear-gradient(
+      45deg,
+      #465298,
+      #465298 10px,
+      #fefefe 10px,
+      #fefefe 20px
+    );
+  }
+
+  &__image-circle--hollow {
+    @extend %circle-styles;
+  }
+
+  &__image-circle--solid {
+    @extend %circle-styles;
+    background: #465298;
+  }
 
 }
 
