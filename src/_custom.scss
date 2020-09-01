@@ -4,6 +4,10 @@
 *
 */
 
+$color-red: red;
+$color-green: green;
+$color-purple: purple;
+
 .header {
   background: $color-primary;
   padding: 1.5rem;
@@ -39,7 +43,19 @@
   border-radius: 50%;
 }
 
-.game-card {
+.transparent {
+  border: 5px solid;
+}
+
+.shaded {
+
+}
+
+.opaque {
+  
+}
+
+.card {
   box-shadow: 0 2px 5px $color-grey-dark;
   cursor: pointer;
   transition: all .1s ease-in;
@@ -48,15 +64,16 @@
     box-shadow: 0 2px 7px $color-grey-dark;
     transform: translateY(-2px);
   }
+}
 
-  &__img-wrapper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 12rem;
-  }
+.game-card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 12rem;
+
   
-  &__image-squiggle--striped {
+  &__squiggle--shaded {
     @extend %squiggle-styles;
     background: repeating-linear-gradient(
       45deg,
@@ -67,16 +84,16 @@
     );
   }
 
-  &__image-squiggle--hollow {
+  &__squiggle--transparent {
     @extend %squiggle-styles;
   }
 
-  &__image-squiggle--solid {
+  &__squiggle--opaque {
     @extend %squiggle-styles;
     background: #465298;
   }
 
-  &__image-diamond--striped {
+  &__diamond--shaded {
     @extend %diamond-styles;
     background: repeating-linear-gradient(
       45deg,
@@ -87,16 +104,16 @@
     );
   }
 
-  &__image-diamond--hollow {
+  &__diamond--transparent {
     @extend %diamond-styles;
   }
 
-  &__image-diamond--solid {
+  &__diamond--opaque {
     @extend %diamond-styles;
     background: #465298;
   }
 
-  &__image-circle--striped {
+  &__circle--shaded {
     @extend %circle-styles;
     background: repeating-linear-gradient(
       45deg,
@@ -107,11 +124,11 @@
     );
   }
 
-  &__image-circle--hollow {
+  &__circle--transparent {
     @extend %circle-styles;
   }
 
-  &__image-circle--solid {
+  &__circle--opaque {
     @extend %circle-styles;
     background: #465298;
   }
