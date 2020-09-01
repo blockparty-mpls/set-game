@@ -8,25 +8,12 @@
 // COLOR
 //=====================================================
 
-// Github color palette
-// $color-light: #C7E48B;
-// $color-med: #7BC96F;
-// $color-dark: #209B3A;
-// $color-grey: #EAEDF0;
-
-// Grayscale first design palette
-// $color-primary: #ccc;
-// $color-secondary: #999;
-$color-primary: #209B3A;
+$color-primary: #613394;
 $color-secondary: #7BC96F;
-// $color-secondary: #31E858;
 $color-tertiary: #E8E51A;
-// $color-yellow: #C7E48B;
 
 $color-grey-dark: #38453b;
 $color-grey-light: #f9faf9;
-// $color-grey-dark: #4c4c4c;
-// $color-grey-light: #dedede;
 
 // Basic
 $color-white: #fff;
@@ -88,7 +75,7 @@ $base-line-height: 1.8;
 
 // Global
 $font-family-primary: "Roboto", "Arial", sans-serif;
-$font-color-primary: $color-grey-dark;
+$font-color-primary: $color-grey-light;
 $font-color-secondary: $color-white; 
 $font-size-primary: 1.6rem;
 
