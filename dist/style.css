@@ -1537,8 +1537,8 @@ kbd {
   padding: 2.5rem 0; }
 
 .game-card__image-squiggle--striped, .game-card__image-squiggle--hollow, .game-card__image-squiggle--solid {
-  width: 8rem;
-  height: 12rem;
+  width: 6rem;
+  height: 8rem;
   margin: 1rem;
   border: 5px solid #465298;
   border-top-right-radius: 50%;
@@ -1565,7 +1565,7 @@ kbd {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 18rem; }
+    min-height: 12rem; }
   .game-card__image-squiggle--striped {
     background: repeating-linear-gradient(45deg, #465298, #465298 10px, #fefefe 10px, #fefefe 20px); }
   .game-card__image-squiggle--solid {
