@@ -668,7 +668,8 @@ textarea.is-success:active {
   border-radius: 2px; }
   .card__content {
     padding: 2.5rem;
-    border-radius: 0 0 2px 2px; }
+    border-radius: 0 0 2px 2px;
+    width: 100%; }
     .card__content p {
       margin: 0; }
   .card__image {
@@ -1535,8 +1536,27 @@ kbd {
 .main {
   padding: 2.5rem 0; }
 
+.game-card__image-squiggle--striped, .game-card__image-squiggle--hollow, .game-card__image-squiggle--solid {
+  width: 8rem;
+  height: 12rem;
+  margin: 1rem;
+  border-top-right-radius: 50%;
+  border-bottom-left-radius: 50%;
+  transform: skew(10deg); }
+
 .game-card {
+  display: flex;
   box-shadow: 0 2px 5px #38453b; }
+  .game-card__img-wrapper {
+    display: flex;
+    justify-content: center; }
+  .game-card__image-squiggle--striped {
+    border: 5px solid #465298;
+    background: repeating-linear-gradient(45deg, #465298, #465298 10px, #fefefe 10px, #fefefe 20px); }
+  .game-card__image-squiggle--hollow {
+    border: 5px solid #465298; }
+  .game-card__image-squiggle--solid {
+    background: #465298; }
 
 .footer {
   background: #613394;

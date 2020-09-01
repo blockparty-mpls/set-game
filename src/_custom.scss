@@ -13,9 +13,47 @@
   padding: 2.5rem 0;
 }
 
+%squiggle-styles {
+  width: 8rem;
+    height: 12rem;
+    margin: 1rem;
+    border-top-right-radius: 50%;
+    border-bottom-left-radius: 50%;
+    transform: skew(10deg);
+}
+
 .game-card {
+  display: flex;
   box-shadow: 0 2px 5px $color-grey-dark;
+
+  &__img-wrapper {
+    display: flex;
+    justify-content: center;
+  }
   
+  &__image-squiggle--striped {
+    @extend %squiggle-styles;
+    border: 5px solid #465298;
+    background: repeating-linear-gradient(
+      45deg,
+      #465298,
+      #465298 10px,
+      #fefefe 10px,
+      #fefefe 20px
+    );
+  }
+
+  &__image-squiggle--hollow {
+    @extend %squiggle-styles;
+    border: 5px solid #465298;
+  }
+
+  &__image-squiggle--solid {
+    @extend %squiggle-styles;
+    background: #465298;
+  }
+
+
 }
 
 .footer {
