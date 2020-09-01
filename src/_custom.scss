@@ -41,6 +41,13 @@
 
 .game-card {
   box-shadow: 0 2px 5px $color-grey-dark;
+  cursor: pointer;
+  transition: all .1s ease-in;
+
+  &:hover {
+    box-shadow: 0 2px 7px $color-grey-dark;
+    transform: translateY(-2px);
+  }
 
   &__img-wrapper {
     display: flex;

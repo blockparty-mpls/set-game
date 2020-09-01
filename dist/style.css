@@ -1560,7 +1560,12 @@ kbd {
   border-radius: 50%; }
 
 .game-card {
-  box-shadow: 0 2px 5px #38453b; }
+  box-shadow: 0 2px 5px #38453b;
+  cursor: pointer;
+  transition: all .1s ease-in; }
+  .game-card:hover {
+    box-shadow: 0 2px 7px #38453b;
+    transform: translateY(-2px); }
   .game-card__img-wrapper {
     display: flex;
     justify-content: center;
