@@ -24,7 +24,7 @@ function getDeck(){
                 for (l = 0; l < clarity.length; l++) {
                     var card = {
                         color: colors[i],
-                        number: numbers[j],
+                        num: numbers[j],
                         shape: shapes[k],
                         clarity: clarity[l]
                     };
@@ -42,3 +42,24 @@ console.log(deck[Math.floor(Math.random() * 81)]);
 console.log(deck[Math.floor(Math.random() * 81)]);
 
 console.log(deck);
+
+//write a function that grabs a number of random indices from the deck index and removes them 
+
+// function deal(cards){
+
+    //grab the number of cards from the deck
+
+    //display the cards in the UI
+        //loop through the number of the 'cards' argument
+
+        //create new 'div' element with a class of 'game-card' for each card from the array
+
+            //determine how many divs to nest within this new div element based on the 'num' property of each card
+
+            //append color, shape, and clarity classes based on the properties for each
+
+
+
+    //remove the selected cards from the 'deck' array
+
+// }
