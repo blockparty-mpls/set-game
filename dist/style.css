@@ -1811,36 +1811,60 @@ body.dimmed {
 */
 .header {
   background: #424242;
+  color: #eee;
   padding: 1.5rem; }
 
 .main {
   padding: 2.5rem 0; }
 
-.game-card__squiggle--shaded, .game-card__squiggle--transparent, .game-card__squiggle--opaque {
+.game-card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 12rem; }
+
+.squiggle {
   width: 6rem;
   height: 8rem;
   margin: 1rem;
-  border: 5px solid #465298;
   border-top-right-radius: 50%;
   border-bottom-left-radius: 50%;
   transform: skew(10deg); }
 
-.game-card__diamond--shaded, .game-card__diamond--transparent, .game-card__diamond--opaque {
+.diamond {
   width: 6rem;
   height: 6rem;
   margin: 2rem;
-  border: 5px solid #465298;
   transform: rotate(45deg); }
 
-.game-card__circle--shaded, .game-card__circle--transparent, .game-card__circle--opaque {
+.circle {
   width: 6rem;
   height: 6rem;
   margin: 2rem;
-  border: 5px solid #465298;
   border-radius: 50%; }
 
+.red {
+  border-color: red !important;
+  background-color: red; }
+
+.green {
+  border-color: green !important;
+  background-color: green; }
+
+.purple {
+  border-color: purple !important;
+  background-color: purple; }
+
 .transparent {
+  border: 5px solid;
+  background-color: transparent; }
+
+.opaque {
   border: 5px solid; }
+
+.shaded {
+  border: 5px solid;
+  background: repeating-linear-gradient(45deg, #777, #777 5px, #fefefe 5px, #fefefe 12px); }
 
 .card {
   box-shadow: 0 2px 5px #212121;
@@ -1850,24 +1874,7 @@ body.dimmed {
     box-shadow: 0 2px 7px #212121;
     transform: translateY(-2px); }
 
-.game-card {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 12rem; }
-  .game-card__squiggle--shaded {
-    background: repeating-linear-gradient(45deg, #465298, #465298 10px, #fefefe 10px, #fefefe 20px); }
-  .game-card__squiggle--opaque {
-    background: #465298; }
-  .game-card__diamond--shaded {
-    background: repeating-linear-gradient(45deg, #465298, #465298 10px, #fefefe 10px, #fefefe 20px); }
-  .game-card__diamond--opaque {
-    background: #465298; }
-  .game-card__circle--shaded {
-    background: repeating-linear-gradient(45deg, #465298, #465298 10px, #fefefe 10px, #fefefe 20px); }
-  .game-card__circle--opaque {
-    background: #465298; }
-
 .footer {
   background: #424242;
+  color: #eee;
   padding: 1.5rem 0; }
