@@ -8,25 +8,25 @@
 // COLOR
 //=====================================================
 
-$color-primary: #613394;
-$color-secondary: #7BC96F;
-$color-tertiary: #E8E51A;
+// Grayscale first design palette
+$color-primary: #424242;
+$color-secondary: #757575;
+$color-tertiary: #9e9e9e;
+$color-quarternary: #e0e0e0;
 
-$color-grey-dark: #38453b;
-$color-grey-light: #f9faf9;
+$color-grey-dark: #212121;
+$color-grey-light: #eee; 
 
 // Basic
-$color-white: #fff;
+$color-white: #f7f7f7;
 $color-black: #101010;
-
-$color-link: $color-secondary;
-$color-link-hover: darken($color-link, 10%);
 
 // Global
 $global-background-color: $color-grey-light;
 
-// Buttons
-$accent-color: $color-primary;
+// Links
+$color-link: $color-secondary;
+$color-link-hover: darken($color-link, 10%);
 
 //=====================================================
 // CONTAINERS
@@ -62,7 +62,7 @@ $grid-padding: 1.5rem;
 // Custom col padding
 $grid-column-padding-custom: .5rem;
 
-// Rows
+// Gallery row fixed height
 $row-gallery-height: 20rem;
 
 //=====================================================
@@ -71,18 +71,19 @@ $row-gallery-height: 20rem;
 
 // Set the default to 1rem size for browser window resize
 $base-font-size: 62.5%;
-$base-line-height: 1.8;
+$base-line-height: 1.6;
 
 // Global
 $font-family-primary: "Roboto", "Arial", sans-serif;
-$font-color-primary: $color-grey-light;
-$font-color-secondary: $color-white; 
+$font-color-primary: $color-grey-dark;
+$font-color-secondary: $color-grey-light;
 $font-size-primary: 1.6rem;
 
 // Headings
-$heading-font-family-primary: "Roboto", "Arial", sans-serif;
+$heading-font-family-primary: "Roboto", "Arial", sans-serif; 
 $heading-font-color-primary: $color-grey-dark;
-$heading-font-weight: 700;
+$heading-font-color-secondary: $color-grey-light;
+$heading-font-weight: 600;
 $heading-line-height: 1.2;
 
 // Small headings
@@ -102,11 +103,6 @@ $h5-primary: 2rem;
 // Block element spacing
 $typography-margins: 1.2rem;
 
-// Blockquote
-$blockquote-font-size: 1.3rem;
-$blockquote-border-color: $color-grey-dark;
-$blockquote-background-color: transparent;
-
 // Letter spacing
 $letter-spacing-content: .8px;
 $letter-spacing-heading: 1px;
@@ -119,7 +115,7 @@ $margin-utility: 1.5rem;
 $padding-utility: 1.5rem;
 
 //=====================================================
-// Borders
+// BORDERS
 //=====================================================
 
 $border-width: 1px;
@@ -129,68 +125,104 @@ $border-radius: .5rem;
 $borders: $border-width $border-style $border-color;
 
 //=====================================================
-// NAVIGATION
-//=====================================================
-
-$navbar-padding: 1rem;
-$mobile-navbar-padding: 2.5rem;
-
-$navbar-link-color-hover: darken($color-primary, 15%);
-
-$mobile-navbar-background-color: $global-background-color;
-
-//=====================================================
 // FORMS
 //=====================================================
-
-$buttons: (".button, a.button, button, [type=submit], [type=reset], [type=button]");
 
 $forms: (
   "[type=color], [type=date], [type=datetime], [type=datetime-local], [type=email], [type=month], [type=number], [type=password], [type=search], [type=tel], [type=text], [type=url], [type=week], [type=time], select, textarea"
 );
-$input-background: $color-grey-light;
+
+// Colors
+$input-background: $color-white;
 $input-color: $color-grey-dark;
-$placeholder: darken($accent-color, 20%);
+$placeholder-color: $color-secondary;
+
+// Borders
 $form-border: 1px solid $border-color;
-$form-border-hover: 1px solid darken($border-color, 10%);
+$form-border-hover: 1px solid $color-secondary;
 $form-border-focus: 1px solid $color-secondary;
 
+// Margin and Pading
+$form-margin: 0 0 .5rem 0;
+$form-padding: 1rem;
+
+// Checkboxes & Radio buttons
+$other-forms: ( "[type="checkbox"], [type="radio"]" );
+
+// Alerts
 $success: green;
 $error: red;
 
 //======================================================
-// Buttons
+// BUTTONS
 //======================================================
 
-$button-background-color: $color-secondary;
-$button-background-hover: darken($button-background-color, 10%);
+$buttons: (".button, a.button, button, [type=submit], [type=reset], [type=button]");
+
+// All button styles ********************
+
+// Colors
+$button-background-color: $color-primary;
 $button-color: $color-grey-light; 
+$button-background-hover: darken($button-background-color, 10%);
+
+// Typography
 $button-font-weight: 400;
 $button-font-family: "Roboto", "Arial", sans-serif;
 $button-font-size: $font-size-primary;
+$button-line-height: 1;
+$button-text-transform: uppercase;
+
+// Borders
 $button-border-width: 1px;
 $button-border-style: solid;
 $button-border-color: $button-background-color;
 $button-border-radius: $border-radius;
-$button-text-transform: none;
+
+// Margin and Padding
+$button-margin: 0 0 1.5rem 0;
+$button-padding: 1rem 1.5rem;
+
+// Transition
+$button-transition: all 0.3s;
+
+// End all styles ***********************
 
 // Accent buttons
-$accent-button-background-color: $color-primary;
-$accent-button-color: $color-white;
+$accent-button-background-color: $color-secondary;
+$accent-button-color: $color-grey-light;
 
 // Muted Buttons
-$muted-border: 1px solid $accent-color;
-$muted-border-hover: 1px solid darken($accent-color, 30%);
+$muted-border: 1px solid $color-primary;
+$muted-border-hover: 1px solid lighten($color-primary, 30%);
 $muted-background: transparent;
 $muted-background-hover: transparent;
-$muted-color: darken($accent-color, 50%);
-$muted-color-hover: darken($accent-color, 50%);
+$muted-color: $color-primary;
+$muted-color-hover: $color-secondary;
 
 // Round Buttons
 $round-buttons: 5rem;
 
 //==============================================================================
-// Code
+// CARDS
+//==============================================================================
+
+$card-color: $color-white;
+$card-title-font-size: 3rem;
+$card-title-line-height: 3rem;
+$card-margins: 0 0 1rem 0;
+
+//==============================================================================
+// BLOCKQUOTES
+//==============================================================================
+
+$blockquote-font-size: 1.3rem;
+$blockquote-border-color: $color-grey-dark;
+$blockquote-background-color: transparent;
+$blockquote-cite-font-size: 1rem;
+
+//==============================================================================
+// CODE
 //==============================================================================
 
 $code-color: $font-color-primary;

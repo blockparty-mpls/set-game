@@ -10,6 +10,7 @@ $color-purple: purple;
 
 .header {
   background: $color-primary;
+  color: $color-grey-light;
   padding: 1.5rem;
 }
 
@@ -17,43 +18,73 @@ $color-purple: purple;
   padding: 2.5rem 0;
 }
 
-%squiggle-styles {
-  width: 6rem;
-  height: 8rem;
-  margin: 1rem;
-  border: 5px solid #465298;
-  border-top-right-radius: 50%;
-  border-bottom-left-radius: 50%;
-  transform: skew(10deg);
+.game-card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 12rem;
+  }
+
+// SHAPE CLASSES
+.squiggle {
+    width: 5rem;
+    height: 7rem;
+    margin: 1rem;
+    border-top-right-radius: 50%;
+    border-bottom-left-radius: 50%;
+    transform: skew(10deg);
 }
 
-%diamond-styles {
-  width: 6rem;
-  height: 6rem;
-  margin: 2rem;
-  border: 5px solid #465298;
-  transform: rotate(45deg);
+.diamond {
+    width: 5rem;
+    height: 5rem;
+    margin: 0 1.5rem;
+    transform: rotate(45deg);
 }
 
-%circle-styles {
-  width: 6rem;
-  height: 6rem;
-  margin: 2rem;
-  border: 5px solid #465298;
-  border-radius: 50%;
+.circle {
+    width: 6rem;
+    height: 6rem;
+    margin: 0 1rem;
+    border-radius: 50%;
+}
+
+.red {
+    border-color: $color-red !important;
+    background-color: $color-red;
+}
+
+.green {
+    border-color: $color-green !important;
+    background-color: $color-green;
+}
+
+.purple {
+    border-color: $color-purple !important;
+    background-color: $color-purple;
 }
 
 .transparent {
   border: 5px solid;
-}
-
-.shaded {
-
+  background-color: transparent;
 }
 
 .opaque {
-  
+    border: 5px solid;
 }
+
+.shaded {
+    border: 5px solid;
+    background: repeating-linear-gradient(
+      45deg,
+      #777,
+      #777 5px,
+      #fefefe 5px,
+      #fefefe 12px
+    );
+}
+
+// END SHAPE CLASSES
 
 .card {
   box-shadow: 0 2px 5px $color-grey-dark;
@@ -66,76 +97,8 @@ $color-purple: purple;
   }
 }
 
-.game-card {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 12rem;
-
-  
-  &__squiggle--shaded {
-    @extend %squiggle-styles;
-    background: repeating-linear-gradient(
-      45deg,
-      #465298,
-      #465298 10px,
-      #fefefe 10px,
-      #fefefe 20px
-    );
-  }
-
-  &__squiggle--transparent {
-    @extend %squiggle-styles;
-  }
-
-  &__squiggle--opaque {
-    @extend %squiggle-styles;
-    background: #465298;
-  }
-
-  &__diamond--shaded {
-    @extend %diamond-styles;
-    background: repeating-linear-gradient(
-      45deg,
-      #465298,
-      #465298 10px,
-      #fefefe 10px,
-      #fefefe 20px
-    );
-  }
-
-  &__diamond--transparent {
-    @extend %diamond-styles;
-  }
-
-  &__diamond--opaque {
-    @extend %diamond-styles;
-    background: #465298;
-  }
-
-  &__circle--shaded {
-    @extend %circle-styles;
-    background: repeating-linear-gradient(
-      45deg,
-      #465298,
-      #465298 10px,
-      #fefefe 10px,
-      #fefefe 20px
-    );
-  }
-
-  &__circle--transparent {
-    @extend %circle-styles;
-  }
-
-  &__circle--opaque {
-    @extend %circle-styles;
-    background: #465298;
-  }
-
-}
-
 .footer {
   background: $color-primary;
+  color: $color-grey-light;
   padding: 1.5rem 0;
 }

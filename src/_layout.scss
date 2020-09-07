@@ -6,22 +6,6 @@
 
 // CONTAINERS
 
-// $sizes: sm, med, lg;
-
-// @for $i from 1 to $grid-columns {
-//   @each $size in $sizes {
-//     .col-#{$size}-#{$i} {
-//       padding: 250px;
-//     }
-//   }
-// }
-
-// @each $size in $sizes {
-//   .col-#{$size} {
-//     margin: 500px;
-//   }
-// }
-
 .container {
   @include container-styles;
 }
@@ -84,7 +68,7 @@
   margin-left: -#{$grid-padding};
 }
 
-// Clip row by height
+// Gallery Rows
 .row-gallery {
   max-height: $row-gallery-height;
   overflow: hidden;
@@ -99,12 +83,13 @@
 
 @mixin col-x-list {
   @for $i from 1 through $grid-columns {
-      .col-#{$i}, .col-sm-#{$i}, .col-med-#{$i}, .col-lg-#{$i}, .col-sm, .col-med, .col-lg { @extend %col-styles; }
+      .col-#{$i}, .col-sm-#{$i}, .col-med-#{$i}, .col-lg-#{$i}, .col, .col-sm, .col-med, .col-lg { @extend %col-styles; }
   }
 }
 
 @include col-x-list;
 
+// Row Columns
 [class*="row-cols-"] > * {
   flex: 0 0 100%;
   max-width: 100%; 
@@ -121,7 +106,7 @@
   padding-left: 0;
 }
 
-// custom spacing for cols
+// Custom Row Spacing
 .row-custom {
   margin-right: -#{$grid-column-padding-custom};
   margin-left: -#{$grid-column-padding-custom};

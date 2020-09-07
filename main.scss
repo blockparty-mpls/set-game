@@ -1,7 +1,10 @@
 /*! 
 
-    Description: The Game of Set
-    Version: 1.0
+    Theme Name: Pineapple Frontend
+    Author: Nikolas Haug
+    Author URI: https://nikolashaug.com
+    Description: A lightweight sass/css framework with lightweight JS components
+    Version: 2.0
 
 */
 
@@ -27,6 +30,7 @@
 //====================================================
 
 @import "src/components";
+@import "src/navigation";
 @import "src/layout";
 @import "src/utilities";
 
