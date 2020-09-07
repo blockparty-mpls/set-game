@@ -1,7 +1,7 @@
 {
-  "name": "lightweight-ui",
-  "version": "1.0.0",
-  "description": "a lightweight frontend framework",
+  "name": "pineapple",
+  "version": "2.0.0",
+  "description": "A lightweight and responsive frontend framework with lightweight JS componenets.",
   "main": "index.js",
   "scripts": {
     "devserver": "live-server",
@@ -9,10 +9,15 @@
     "dev": "node-sass ./main.scss ./dist/style.css -w",
     "build": "node-sass ./main.scss ./dist/style.css --output-style compressed",
     "prefix": "postcss --use autoprefixer -b 'last 5 versions' dist/style.css -o dist/style.prefix.css",
-    "compress": "node-sass dist/style.prefix.css dist/style.min.css --output-style compressed",
-    "build:all": "npm-run-all build prefix compress"
+    "compress": "node-sass dist/style.prefix.css dist/style.css --output-style compressed",
+    "build:all": "npm-run-all build prefix compress",
+    "wp:start": "npm-run-all --parallel devserver wp:dev",
+    "wp:dev": "node-sass ./main.scss ./style.css -w",
+    "wp:prefix": "postcss --use autoprefixer -b 'last 5 versions' ./style.css -o dist/style.prefix.css",
+    "wp:compress": "node-sass dist/style.prefix.css ./style.css --output-style compressed",
+    "wp:build": "npm-run-all wp:prefix wp:compress"
   },
-  "author": "niko",
+  "author": "Nikolas Haug",
   "license": "ISC",
   "devDependencies": {
     "autoprefixer": "^9.7.6",

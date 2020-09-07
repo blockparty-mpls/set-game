@@ -4,128 +4,8 @@
 *
 */
 
-// Basic navbar
-.nav {
-  background: $color-secondary;
-  padding: .5rem;
-  
-
-  &__container {
-    position: relative;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    padding: .5rem 1rem;
-    @media only screen and (max-width: $medium) {
-      flex-direction: column;
-      align-items: flex-start;
-      justify-content: center;
-    }
-  }
-
-  &__logo {
-    display: inline-block;
-    margin-right: 1rem;
-    font-size: $font-size-primary;
-    text-transform: uppercase;
-    letter-spacing: .15rem;
-    color: $color-grey-light;
-    line-height: inherit;
-    white-space: nowrap;
-  }
-
-  &__list {
-    display: flex;
-    margin: 0 0 0 auto;
-    @media only screen and (max-width: $medium) {
-      display: none;
-      flex-direction: column;
-      margin: 0;
-
-      &--active {
-        display: flex;
-      }
-    }
-
-    li {
-      margin: 0 1rem;
-
-      a {
-        padding: 1rem;
-        color: $color-grey-dark;
-        @media only screen and (max-width: $medium) {
-          padding-left: 0;
-        }
-      }
-
-      @media only screen and (max-width: $medium) {
-        margin: 0;
-      }
-    }
-  }
-
-  &__toggle {
-    display: none;
-    margin: 0 0 0 auto;
-    padding: .25rem .75rem;
-    background: $color-primary;
-    font-size: 1.25rem;
-    line-height: 1;
-    border: 1px solid transparent;
-    border-radius: .25rem;
-    @media only screen and (max-width: $medium) {
-      position: absolute;
-      right: 0;
-      display: block;
-
-      &--active-toggle {
-        position: absolute;
-        top: 1rem;
-      }
-    }
-  }
-
-  &__toggle-icon {
-    display: inline-block;
-    width: 1.5em;
-    height: 1.5em;
-    vertical-align: middle;
-    content: "";
-    background: no-repeat center center;
-    background-size: 100% 100%;
-  }
-}
-
 //===================================================
-// Blockquote for citations etc
-//
-//     <blockquote>
-// 	      <p>A woman must have money and a room of her own if she is to write fiction.</p>
-// 	      <cite>Virginia Woolf</cite>
-//     </blockquote>
-//
-//===================================================
-blockquote {
-  background: $blockquote-background-color;
-  margin: 0 0 $typography-margins 0;
-  border-left: 10px solid $blockquote-border-color;
-  padding: 0 1.5rem;
-  font-size: $blockquote-font-size;
-
-  cite {
-    display: block;
-    margin-top: $typography-margins;
-    font-size: 1rem;
-  }
-}
-
-//===================================================
-// Buttons
-//
-// Use for:
-//
-// <button>, <a class="button>, <input type="submit">, <input type="button">, <input type="reset">
-//
+// BUTTONS
 //===================================================
 %buttons {
   -webkit-appearance: none;
@@ -138,14 +18,14 @@ blockquote {
   font-family: $button-font-family;
   font-size: $button-font-size;
   text-transform: $button-text-transform;
-  padding: 1rem 1.5rem;
-  margin: 0 0 1.5rem 0;
+  padding: $button-padding;
+  margin: $button-margin;
   vertical-align: middle;
   text-align: center;
   cursor: pointer;
   text-decoration: none;
-  line-height: 1;
-  transition: all 0.3s;
+  line-height: $button-line-height;
+  transition: $button-transition;
 }
 // Buttons on hover
 %buttons-hover {
@@ -182,7 +62,7 @@ blockquote {
   }
 }
 
-// Secondary button color
+// Secondary accent button color
 .accent-button,
 a.accent-button {
   color: $accent-button-color;
@@ -233,24 +113,19 @@ a.full-button {
 }
 
 //===================================================
-// Forms
-//
-// Use for:
-//
-//
-//
+// FORMS
 //===================================================
 
-// Display for all input fields (except buttons and checkbox)
+// Display for all input fields (except Buttons, Checkboxes, and Radio buttons)
 %forms {
   display: block;
   border: $form-border;
   border-radius: $border-radius;
-  padding: 1rem;
+  padding: $form-padding;
   outline: none;
   background: $input-background;
   color: $input-color;
-  margin-bottom: 0.5rem;
+  margin: $form-margin;
   font-size: $font-size-primary;
   width: 100%;
   max-width: 100%;
@@ -282,6 +157,7 @@ a.full-button {
   }
 }
 
+// Textarea
 textarea {
   overflow: auto;
   height: auto;
@@ -290,7 +166,7 @@ textarea {
 fieldset {
   border: 1px solid $border-color;
   border-radius: $border-radius;
-  padding: $padding-utility;
+  padding: 1rem;
   margin: $typography-margins 0;
 }
 
@@ -299,22 +175,45 @@ legend {
   font-weight: 600;
 }
 
-// Fix issues with select
+// Fix issues with Select
 select {
-  color: $font-color-secondary;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  //   background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAAJCAYAAAA/33wPAAAAvklEQVQoFY2QMQqEMBBFv7ERa/EMXkGw11K8QbDXzuN4BHv7QO6ifUgj7v4UAdlVM8Uwf+b9YZJISnlqrfEUZVlinucnBGKaJgghbiHOyLyFKIoCbdvecpyReYvo/Ma2bajrGtbaC58kCdZ1RZ7nl/4/4d5EsO/7nzl7IUtodBexMMagaRrs+06JLMvcNWmaOv2W/C/TMAyD58dxROgSmvxFFMdxoOs6lliWBXEcuzokXRbRoJRyvqqqQvye+QDMDz1D6yuj9wAAAABJRU5ErkJggg==) right center no-repeat;
-  line-height: 1.5; // ensures text doesn't get cut off
+	display: block;
+	border: $borders;
+	-moz-appearance: none;
+	-webkit-appearance: none;
+	appearance: none;
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAAJCAYAAAA/33wPAAAAvklEQVQoFY2QMQqEMBBFv7ERa/EMXkGw11K8QbDXzuN4BHv7QO6ifUgj7v4UAdlVM8Uwf+b9YZJISnlqrfEUZVlinucnBGKaJgghbiHOyLyFKIoCbdvecpyReYvo/Ma2bajrGtbaC58kCdZ1RZ7nl/4/4d5EsO/7nzl7IUtodBexMMagaRrs+06JLMvcNWmaOv2W/C/TMAyD58dxROgSmvxFFMdxoOs6lliWBXEcuzokXRbRoJRyvqqqQvye+QDMDz1D6yuj9wAAAABJRU5ErkJggg==);
+  background-position: right center;
+  background-repeat: no-repeat;
+}
+select::-ms-expand {
+	display: none;
+}
+select option {
+	font-weight:normal;
 }
 
 select::-ms-expand {
   display: none; // dropdown icon fix for IE
 }
 
-// Make range full width
+// Make Range full width
 [type="range"] {
   width: 100%;
+}
+
+
+// Checkboxes & Radio buttons
+#{$other-forms} {
+  
+  & + label {
+    display: inline-block;
+  }
+  
+  &:checked + label {
+    color: $color-secondary;
+  }
+  
 }
 
 // Labels
@@ -325,29 +224,18 @@ label {
   margin: 1rem 0 0.5rem;
 }
 
-@include small-breakpoint {
-  .split-form {
-    // Split forms have right aligned labels and margins on the column
-    label {
-      text-align: right;
-      padding: 0 0.5rem;
-      margin-bottom: 1rem;
-    }
-  }
-}
-
 // Form validation
 input,
 select,
 textarea {
   &.has-error {
     border: 1px solid $error;
-    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.1), 0 0 6px lighten($error, 35%);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.1), 0 0 3px lighten($error, 35%);
   }
 
   &.is-success {
     border: 1px solid $success;
-    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.1), 0 0 6px lighten($success, 25%);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.1), 0 0 3px lighten($success, 25%);
   }
 
   &:hover,
@@ -364,43 +252,43 @@ textarea {
 }
 
 // Placeholder Text
-::-webkit-input-placeholder,
-::-moz-placeholder,
-:-moz-placeholder,
-:-ms-input-placeholder {
-  color: $placeholder;
+::-webkit-input-placeholder { /* Edge */
+  color: $placeholder-color;
+}
+
+:-ms-input-placeholder { /* Internet Explorer */
+  color: $placeholder-color;
+}
+
+::placeholder {
+  color: $placeholder-color;
 }
 
 //===================================================
 // Cards
 // 
-//  <div class="card">
-    //     <div class="card__image">
-    //       <img src="" alt="">
-    //     </div>
-    //     <div class="card__content">
-    //       <span class="card__title">Card Title</span>
-    //       <p>Card text</p>
-    //     </div>
-    //     <div class="card__action">
-    //         <a href="#" class="button">Action 1</a>
-    //     </div>
-    // </div>
+// <div class="card">
+//     <div class="card__content">
+//         <span class="card__title">Card Title</span>
+//         <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit.</p>
+//     </div>
+//     <div class="card__action">
+//         <a href="#" class="button">Action 1</a>
+//         <a href="#" class="button">Action 2</a>
+//     </div>
+// </div>
 //===================================================
 
 .card {
   position: relative;
-  margin: .5rem 0 1rem 0;
-  background-color: $color-white;
-  color: $color-grey-dark;
+  margin: $card-margins;
+  background-color: $card-color;
   transition: box-shadow .25s;
   border-radius: 2px;
 
   &__content {
     padding: 2.5rem;
     border-radius: 0 0 2px 2px;
-
-    width: 100%;
 
     p {
       margin: 0;
@@ -424,8 +312,8 @@ textarea {
 
   &__title {
     display: block;
-    line-height: 3rem;
-    font-size: 3rem;
+    line-height: $card-title-line-height;
+    font-size: $card-title-font-size;
     margin-bottom: 1.5rem;
   }
 
@@ -443,42 +331,60 @@ textarea {
 }
 
 //===================================================
+// BLOCKQUOTE
+//
+//     <blockquote>
+// 	      <p>A woman must have money and a room of her own if she is to write fiction.</p>
+// 	      <cite>Virginia Woolf</cite>
+//     </blockquote>
+//
+//===================================================
+
+blockquote {
+  background: $blockquote-background-color;
+  margin: 0 0 $typography-margins 0;
+  border-left: 5px solid $blockquote-border-color;
+  padding: 0 1.5rem;
+  font-size: $blockquote-font-size;
+
+  cite {
+    display: block;
+    margin-top: $typography-margins;
+    font-size: $blockquote-cite-font-size;
+  }
+}
+
+//===================================================
 // Scroll to top button
 //
 //  <div class="scroll-top-btn"></div>
 //
 //===================================================
 
-.scroll-top-btn {
+.scroll-top-button {
+  opacity: 0;
   position: fixed;
   bottom: 20px;
-  right: 20px;
-  background: rgb(0, 0, 0);
-  background: rgba(0, 0, 0, 0.7);
-  width: 40px;
-  height: 40px;
-  display: block;
-  text-decoration: none;
-  border-radius: 5px;
-  opacity: 0;
-  transform: translateX(10rem);
-  transition: all 0.3s ease;
-  z-index: 2;
+  right: 30px;
+  z-index: 999;
+  font-size: $font-size-primary;
+  background-color: $color-primary;
+  color: $color-grey-light;
   cursor: pointer;
-  &::before {
-    content: "\2191";
-    display: block;
-    color: $color-white;
-    font-size: 2.6rem;
-    position: absolute;
-    left: 16px;
-    bottom: 3px;
+  padding: 1rem;
+  border-radius: .5rem;
+  transition: opacity .3s ease-out;
+
+  &:hover,
+  &:focus,
+  &:active {
+    box-shadow: 0 0 10px $color-secondary;
   }
 }
 
-.scroll-top-btn:hover {
-  background: rgba(0, 0, 0, 0.9);
-}
+//===================================================
+// CODE / KEYBOARD INPUT
+//===================================================
 
 // Code block styling
 pre {
@@ -500,18 +406,18 @@ pre {
 
 // Keyboard input
 kbd {
-  background-color: #f7f7f7;
-  border: 1px solid #ccc;
+  background-color: $color-white;
+  border: 1px solid $color-grey-light;
   border-radius: 3px;
-  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2), 0 0 0 2px #fff inset;
-  color: #333;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2), 0 0 0 2px $color-white inset;
+  color: $color-grey-dark;
   display: inline-block;
   font-family: Helvetica, Arial, sans-serif;
-  font-size: 13px;
+  font-size: 1.3rem;
   line-height: 1.4;
-  margin: 0 0.1em;
-  padding: 0.1em 0.6em;
-  text-shadow: 0 1px 0 #fff;
+  margin: 0 .1rem;
+  padding: .1rem .6rem;
+  text-shadow: 0 1px 0 $color-white;
 }
 
 // Inline code styling
