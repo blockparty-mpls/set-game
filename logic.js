@@ -117,18 +117,18 @@ var checkSet = function(selected) {
     console.log(selected);
     //create four nested functions, one for each of the properties that you need to compare
     var checkColor = function(){
-        if (selected[0].color === selected[1].color && selected[0].color === selected[2].color && selected[1].color === selected[2].color){
+        if (selected[0].colors === selected[1].colors && selected[0].colors === selected[2].colors && selected[1].colors === selected[2].colors){
             return true
-        } else if (selected[0].color !== selected[1].color && selected[0].color !== selected[2].color && selected[1].color !== selected[2].color){
+        } else if (selected[0].colors !== selected[1].colors && selected[0].colors !== selected[2].colors && selected[1].colors !== selected[2].colors){
             return true
         } else {
             return false
         };
     };
     var checkNumber = function(){
-        if (selected[0].num === selected[1].num && selected[0].num === selected[2].num && selected[1].num === selected[2].num){
+        if (selected[0].number === selected[1].number && selected[0].number === selected[2].number && selected[1].number === selected[2].number){
             return true
-        } else if (selected[0].num !== selected[1].num && selected[0].num !== selected[2].num && selected[1].num !== selected[2].num){
+        } else if (selected[0].number !== selected[1].number && selected[0].number !== selected[2].number && selected[1].number !== selected[2].number){
             return true
         } else {
             return false
