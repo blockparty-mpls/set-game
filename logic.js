@@ -37,8 +37,8 @@ var getDeck = function(){
 
 //console.log(getDeck());
 
-// console.log(deck[Math.floor(Math.random() * 81)]);
-// console.log(deck[Math.floor(Math.random() * 81)]);
+// console.log(deck[Math.floor(Math.random() * deck.length)]);
+
 getDeck();
 
 console.log(deck);
@@ -73,6 +73,8 @@ var shuffle = function(array) {
 
 //console.log(shuffle(deck));
 
+deck = shuffle(deck);
+
 // write a function that initially deals the cards
 function deal(){
 
@@ -101,3 +103,66 @@ return initial;
 
 
 deal();
+
+var cards = [deck[0], deck[1], deck[2]];
+
+//Create a function that checks an array of cards for "setness"
+/**
+ * Check an arry of three selected cards for "setness"
+ * @param  {Array} selected The array containing the cards to be compared
+ * @return {Boolean}  true if set is valid, false if not
+ */
+
+var checkSet = function(selected) {
+    console.log(selected);
+    //create four nested functions, one for each of the properties that you need to compare
+    var checkColor = function(){
+        if (selected[0].colors === selected[1].colors && selected[0].colors === selected[2].colors && selected[1].colors === selected[2].colors){
+            return true
+        } else if (selected[0].colors !== selected[1].colors && selected[0].colors !== selected[2].colors && selected[1].colors !== selected[2].colors){
+            return true
+        } else {
+            return false
+        };
+    };
+    var checkNumber = function(){
+        if (selected[0].number === selected[1].number && selected[0].number === selected[2].number && selected[1].number === selected[2].number){
+            return true
+        } else if (selected[0].number !== selected[1].number && selected[0].number !== selected[2].number && selected[1].number !== selected[2].number){
+            return true
+        } else {
+            return false
+        };
+    };
+    var checkShape = function(){
+        if (selected[0].shape === selected[1].shape && selected[0].shape === selected[2].shape && selected[1].shape === selected[2].shape){
+            return true
+        } else if (selected[0].shape !== selected[1].shape && selected[0].shape !== selected[2].shape && selected[1].shape !== selected[2].shape){
+            return true
+        } else {
+            return false
+        };
+    };
+    var checkClarity = function(){
+        if (selected[0].clarity === selected[1].clarity && selected[0].clarity === selected[2].clarity && selected[1].clarity === selected[2].clarity){
+            return true
+        } else if (selected[0].clarity !== selected[1].clarity && selected[0].clarity !== selected[2].clarity && selected[1].clarity !== selected[2].clarity){
+            return true
+        } else {
+            return false
+        };
+    };
+
+    var color = checkColor();
+    var number = checkNumber();
+    var shape = checkShape();
+    var clarity = checkClarity();
+
+    if (color === true && number === true && shape === true && clarity === true){
+        console.log("You found a set!");
+    } else {
+        console.log("That's not a set!");
+    };
+};
+
+checkSet(cards);
