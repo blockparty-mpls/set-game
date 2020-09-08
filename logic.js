@@ -71,12 +71,19 @@ var shuffle = function(array) {
 
 };
 
-console.log(shuffle(deck));
+//console.log(shuffle(deck));
 
-// write a function that initially 
-// function deal(cards){
+// write a function that initially deals the cards
+function deal(){
 
 //     grab the number of cards from the deck
+var initial = deck.slice(0,9);
+deck.splice(0, 9);
+console.log(initial);
+console.log(deck);
+return initial;
+};
+
 
 //     display the cards in the UI
 //         loop through the number of the 'cards' argument
@@ -91,4 +98,6 @@ console.log(shuffle(deck));
 
 //     remove the selected cards from the 'deck' array
 
-// }
+
+
+deal();
