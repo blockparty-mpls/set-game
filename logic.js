@@ -16,7 +16,7 @@ var clarity = ['transparent', 'shaded', 'opaque'];
 
 var deck = [];
 
-function getDeck(){
+var getDeck = function(){
 
     for (var i = 0; i < colors.length; i++) {
         for (var j = 0; j < numbers.length; j++) {
@@ -50,45 +50,45 @@ console.log(deck);
  * @param  {Array} array The array to shuffle
  * @return {String}      The first item in the shuffled array
  */
-// var shuffle = function (array) {
+var shuffle = function(array) {
 
-//     var currentIndex = array.length;
-//     var temporaryValue, randomIndex;
+    var currentIndex = array.length;
+    var temporaryValue, randomIndex;
 
-//     // While there remain elements to shuffle...
-//     while (0 !== currentIndex) {
-//         // Pick a remaining element...
-//         randomIndex = Math.floor(Math.random() * currentIndex);
-//         currentIndex -= 1;
+    // While there remain elements to shuffle...
+    while (0 !== currentIndex) {
+        // Pick a remaining element...
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex -= 1;
 
-//         // And swap it with the current element.
-//         temporaryValue = array[currentIndex];
-//         array[currentIndex] = array[randomIndex];
-//         array[randomIndex] = temporaryValue;
-//     }
+        // And swap it with the current element.
+        temporaryValue = array[currentIndex];
+        array[currentIndex] = array[randomIndex];
+        array[randomIndex] = temporaryValue;
+    }
 
-//     return array;
+    return array;
 
-// };
+};
 
-// console.log(shuffle(deck));
+console.log(shuffle(deck));
 
-//write a function that initially 
+// write a function that initially 
 // function deal(cards){
 
-    //grab the number of cards from the deck
+//     grab the number of cards from the deck
 
-    //display the cards in the UI
-        //loop through the number of the 'cards' argument
+//     display the cards in the UI
+//         loop through the number of the 'cards' argument
 
-        //create new 'div' element with a class of 'game-card' for each card from the array
+//         create new 'div' element with a class of 'game-card' for each card from the array
 
-            //determine how many divs to nest within this new div element based on the 'num' property of each card
+//             determine how many divs to nest within this new div element based on the 'num' property of each card
 
-            //append color, shape, and clarity classes based on the properties for each
+//             append color, shape, and clarity classes based on the properties for each
 
 
 
-    //remove the selected cards from the 'deck' array
+//     remove the selected cards from the 'deck' array
 
 // }
