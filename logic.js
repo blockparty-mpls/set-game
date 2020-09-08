@@ -41,7 +41,7 @@ var getDeck = function(){
 
 getDeck();
 
-console.log(deck);
+// console.log(deck);
 
 //The function below will shuffle the deck, but it seems like the getDeck function is already returning a shuffled deck?
 /**
@@ -77,15 +77,39 @@ deck = shuffle(deck);
 
 // write a function that initially deals the cards
 function deal(){
-
-//     grab the number of cards from the deck
-var initial = deck.slice(0,9);
-deck.splice(0, 9);
-console.log(initial);
-console.log(deck);
-return initial;
+    // grab the number of cards from the deck
+    var initial = deck.slice(0,9);
+    deck.splice(0, 9);
+    console.log(initial);
+    console.log(deck);
+    return initial;
 };
 
+const dealtCards = deal();
+console.log(dealtCards);
+
+// Function to display the dealt cards in the UI
+function dealCards(cards) {
+    let html = '';
+    // loop through the number of the 'cards' argument
+    cards.forEach(card => {
+        // create new 'div' element with a class of 'game-card' for each card from the array
+        let cardDiv = document.createElement('div');
+        cardDiv.setAttribute('class', 'game-card');
+        for(let i = 0; i < card.num; i++) {
+            let newDiv = document.createElement('div');
+            newDiv.classList += card.color + ' ';
+            newDiv.classList += card.shape + ' ';
+            newDiv.classList += card.clarity;
+            // console.log(newDiv);
+            cardDiv.appendChild(newDiv);
+        }
+        console.log(cardDiv);
+    }); 
+}
+
+console.log('dealt cards');
+dealCards(dealtCards);
 
 //     display the cards in the UI
 //         loop through the number of the 'cards' argument
