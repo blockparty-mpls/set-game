@@ -33,7 +33,6 @@ function getDeck(){
             }
         }
     }
-    // return deck;
 }
 
 //console.log(getDeck());
