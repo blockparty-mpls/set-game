@@ -80,14 +80,10 @@ function deal(){
     // grab the number of cards from the deck
     var initial = deck.slice(0,9);
     deck.splice(0, 9);
-    console.log(initial);
-    console.log(deck);
+    // console.log(initial);
+    // console.log(deck);
     return initial;
 };
-
-// create new variable for the dealt cards at start of game
-const dealtCards = deal();
-console.log(dealtCards);
 
 // Function to display the dealt cards in the UI
 function dealCards(cards) {
@@ -107,12 +103,8 @@ function dealCards(cards) {
         // add data attributes to 'game-card' div
         let newCard = `
             <div class="col-lg-4 col-med-6">
-                <div class="card">
-                    <div class="card__content">
-                        <div class="game-card" data-color=${card.color} data-num=${card.num} data-shape=${card.shape} data-clarity=${card.clarity}>
-                            ${shapes}
-                        </div>
-                    </div>
+                <div class="game-card" data-color=${card.color} data-num=${card.num} data-shape=${card.shape} data-clarity=${card.clarity}>
+                    ${shapes}
                 </div>
             </div>
         `
@@ -125,29 +117,38 @@ function dealCards(cards) {
 // add event listener for cards in dom and put data attributes into object on click
 document.addEventListener('click',function(e){
     if(e.target && e.target.className == 'game-card') {
-        let jsonData = JSON.stringify({
+        let cardData = {
             color: e.target.getAttribute('data-color'),
             number: e.target.getAttribute('data-num'),
             shape: e.target.getAttribute('data-shape'),
             clarity: e.target.getAttribute('data-clarity')
-        });
-        console.log(JSON.parse(jsonData));
-     } else if(e.target.
-        parentNode.className == 'game-card') {
-        let jsonData = JSON.stringify({
+        };
+         chosenCards.push(cardData);
+         console.log(chosenCards);
+     } else if(e.target.parentNode.className == 'game-card') {
+        let cardData = {
             color: e.target.parentNode.getAttribute('data-color'),
             number: e.target.parentNode.getAttribute('data-num'),
             shape: e.target.parentNode.getAttribute('data-shape'),
             clarity: e.target.parentNode.getAttribute('data-clarity')
-        });
-        console.log(JSON.parse(jsonData));
+        };
+        chosenCards.push(cardData);
+        console.log(chosenCards);
      }
  });
 
-console.log('dealt cards');
+// create new variable for the dealt cards at start of game
+const dealtCards = deal();
+// use dealt cards variable in deal cards function
 dealCards(dealtCards);
+// create empty array for clicked/chosen cards - need to check (checkSet) once length is 3
+const chosenCards = [];
 
-deal();
+// ==========================================
+// GAME LOGIC
+// ==========================================
+
+// deal();
 
 var cards = [deck[0], deck[1], deck[2]];
 

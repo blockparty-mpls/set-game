@@ -25,12 +25,22 @@ $color-purple: purple;
     justify-content: center;
     align-items: center;
     min-height: 12rem;
+    margin: 1.5rem;
+
+    box-shadow: 0 2px 5px $color-grey-dark;
+    cursor: pointer;
+    transition: all .1s ease-in;
+
+    &:hover {
+      box-shadow: 0 2px 7px $color-grey-dark;
+      transform: translateY(-2px);
+    }
   }
 
 // SHAPE CLASSES
 .squiggle {
     width: 5rem;
-    height: 7rem;
+    height: 6rem;
     margin: 1rem;
     border-top-right-radius: 50%;
     border-bottom-left-radius: 50%;
@@ -87,21 +97,6 @@ $color-purple: purple;
 }
 
 // END SHAPE CLASSES
-
-.card {
-  box-shadow: 0 2px 5px $color-grey-dark;
-  cursor: pointer;
-  transition: all .1s ease-in;
-
-  &__content {
-    padding: 0;
-  }
-
-  &:hover {
-    box-shadow: 0 2px 7px $color-grey-dark;
-    transform: translateY(-2px);
-  }
-}
 
 .footer {
   background: $color-primary;
