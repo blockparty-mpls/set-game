@@ -118,9 +118,31 @@ function dealCards(cards) {
         `
         html += newCard;
     }); 
-    // add all dealt card to the dom
-    document.getElementById('gameboard').innerHTML = html;
+    // add all dealt cards to the dom
+    return document.getElementById('gameboard').innerHTML = html;
 }
+
+// add event listener for cards in dom and put data attributes into object on click
+document.addEventListener('click',function(e){
+    if(e.target && e.target.className == 'game-card') {
+        let jsonData = JSON.stringify({
+            color: e.target.getAttribute('data-color'),
+            number: e.target.getAttribute('data-num'),
+            shape: e.target.getAttribute('data-shape'),
+            clarity: e.target.getAttribute('data-clarity')
+        });
+        console.log(JSON.parse(jsonData));
+     } else if(e.target.
+        parentNode.className == 'game-card') {
+        let jsonData = JSON.stringify({
+            color: e.target.parentNode.getAttribute('data-color'),
+            number: e.target.parentNode.getAttribute('data-num'),
+            shape: e.target.parentNode.getAttribute('data-shape'),
+            clarity: e.target.parentNode.getAttribute('data-clarity')
+        });
+        console.log(JSON.parse(jsonData));
+     }
+ });
 
 console.log('dealt cards');
 dealCards(dealtCards);

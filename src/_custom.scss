@@ -19,6 +19,8 @@ $color-purple: purple;
 }
 
 .game-card {
+    position: relative;
+    z-index: 999;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -90,6 +92,10 @@ $color-purple: purple;
   box-shadow: 0 2px 5px $color-grey-dark;
   cursor: pointer;
   transition: all .1s ease-in;
+
+  &__content {
+    padding: 0;
+  }
 
   &:hover {
     box-shadow: 0 2px 7px $color-grey-dark;

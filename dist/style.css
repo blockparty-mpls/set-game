@@ -1818,6 +1818,8 @@ body.dimmed {
   padding: 2.5rem 0; }
 
 .game-card {
+  position: relative;
+  z-index: 999;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -1870,6 +1872,8 @@ body.dimmed {
   box-shadow: 0 2px 5px #212121;
   cursor: pointer;
   transition: all .1s ease-in; }
+  .card__content {
+    padding: 0; }
   .card:hover {
     box-shadow: 0 2px 7px #212121;
     transform: translateY(-2px); }
