@@ -85,46 +85,45 @@ function deal(){
     return initial;
 };
 
+// create new variable for the dealt cards at start of game
 const dealtCards = deal();
 console.log(dealtCards);
 
 // Function to display the dealt cards in the UI
 function dealCards(cards) {
+    // empty html string to concatenate before appending to dom
     let html = '';
     // loop through the number of the 'cards' argument
     cards.forEach(card => {
-        // create new 'div' element with a class of 'game-card' for each card from the array
-        let cardDiv = document.createElement('div');
-        cardDiv.setAttribute('class', 'game-card');
+        // create empty variable for shapes
+        let shapes = '';
+        // determine how many divs to nest within this new div element based on the 'num' property of each card
         for(let i = 0; i < card.num; i++) {
-            let newDiv = document.createElement('div');
-            newDiv.classList += card.color + ' ';
-            newDiv.classList += card.shape + ' ';
-            newDiv.classList += card.clarity;
-            // console.log(newDiv);
-            cardDiv.appendChild(newDiv);
+            let shapeDiv = `<div class="${card.color} ${card.shape} ${card.clarity}"></div>`
+            // append color, shape, and clarity classes based on the properties for each
+            shapes += shapeDiv;
         }
-        console.log(cardDiv);
+        // create new element with necessary divs and 'game-card' class for each card from the array
+        // add data attributes to 'game-card' div
+        let newCard = `
+            <div class="col-lg-4 col-med-6">
+                <div class="card">
+                    <div class="card__content">
+                        <div class="game-card" data-color=${card.color} data-num=${card.num} data-shape=${card.shape} data-clarity=${card.clarity}>
+                            ${shapes}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `
+        html += newCard;
     }); 
+    // add all dealt card to the dom
+    document.getElementById('gameboard').innerHTML = html;
 }
 
 console.log('dealt cards');
 dealCards(dealtCards);
-
-//     display the cards in the UI
-//         loop through the number of the 'cards' argument
-
-//         create new 'div' element with a class of 'game-card' for each card from the array
-
-//             determine how many divs to nest within this new div element based on the 'num' property of each card
-
-//             append color, shape, and clarity classes based on the properties for each
-
-
-
-//     remove the selected cards from the 'deck' array
-
-
 
 deal();
 
