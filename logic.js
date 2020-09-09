@@ -41,7 +41,7 @@ var getDeck = function(){
 
 getDeck();
 
-console.log(deck);
+// console.log(deck);
 
 //The function below will shuffle the deck, but it seems like the getDeck function is already returning a shuffled deck?
 /**
@@ -77,32 +77,78 @@ deck = shuffle(deck);
 
 // write a function that initially deals the cards
 function deal(){
-
-//     grab the number of cards from the deck
-var initial = deck.slice(0,9);
-deck.splice(0, 9);
-console.log(initial);
-console.log(deck);
-return initial;
+    // grab the number of cards from the deck
+    var initial = deck.slice(0,9);
+    deck.splice(0, 9);
+    // console.log(initial);
+    // console.log(deck);
+    return initial;
 };
 
+// Function to display the dealt cards in the UI
+function dealCards(cards) {
+    // empty html string to concatenate before appending to dom
+    let html = '';
+    // loop through the number of the 'cards' argument
+    cards.forEach(card => {
+        // create empty variable for shapes
+        let shapes = '';
+        // determine how many divs to nest within this new div element based on the 'num' property of each card
+        for(let i = 0; i < card.num; i++) {
+            let shapeDiv = `<div class="${card.color} ${card.shape} ${card.clarity}"></div>`
+            // append color, shape, and clarity classes based on the properties for each
+            shapes += shapeDiv;
+        }
+        // create new element with necessary divs and 'game-card' class for each card from the array
+        // add data attributes to 'game-card' div
+        let newCard = `
+            <div class="col-lg-4 col-med-6">
+                <div class="game-card" data-color=${card.color} data-num=${card.num} data-shape=${card.shape} data-clarity=${card.clarity}>
+                    ${shapes}
+                </div>
+            </div>
+        `
+        html += newCard;
+    }); 
+    // add all dealt cards to the dom
+    return document.getElementById('gameboard').innerHTML = html;
+}
 
-//     display the cards in the UI
-//         loop through the number of the 'cards' argument
+// add event listener for cards in dom and put data attributes into object on click
+document.addEventListener('click',function(e){
+    if(e.target && e.target.className == 'game-card') {
+        let cardData = {
+            color: e.target.getAttribute('data-color'),
+            number: e.target.getAttribute('data-num'),
+            shape: e.target.getAttribute('data-shape'),
+            clarity: e.target.getAttribute('data-clarity')
+        };
+         chosenCards.push(cardData);
+         console.log(chosenCards);
+     } else if(e.target.parentNode.className == 'game-card') {
+        let cardData = {
+            color: e.target.parentNode.getAttribute('data-color'),
+            number: e.target.parentNode.getAttribute('data-num'),
+            shape: e.target.parentNode.getAttribute('data-shape'),
+            clarity: e.target.parentNode.getAttribute('data-clarity')
+        };
+        chosenCards.push(cardData);
+        console.log(chosenCards);
+     }
+ });
 
-//         create new 'div' element with a class of 'game-card' for each card from the array
+// create new variable for the dealt cards at start of game
+const dealtCards = deal();
+// use dealt cards variable in deal cards function
+dealCards(dealtCards);
+// create empty array for clicked/chosen cards - need to check (checkSet) once length is 3
+const chosenCards = [];
 
-//             determine how many divs to nest within this new div element based on the 'num' property of each card
+// ==========================================
+// GAME LOGIC
+// ==========================================
 
-//             append color, shape, and clarity classes based on the properties for each
-
-
-
-//     remove the selected cards from the 'deck' array
-
-
-
-deal();
+// deal();
 
 var cards = [deck[0], deck[1], deck[2]];
 

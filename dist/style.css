@@ -1818,14 +1818,23 @@ body.dimmed {
   padding: 2.5rem 0; }
 
 .game-card {
+  position: relative;
+  z-index: 999;
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 12rem; }
+  min-height: 12rem;
+  margin: 1.5rem;
+  box-shadow: 0 2px 5px #212121;
+  cursor: pointer;
+  transition: all .1s ease-in; }
+  .game-card:hover {
+    box-shadow: 0 2px 7px #212121;
+    transform: translateY(-2px); }
 
 .squiggle {
   width: 5rem;
-  height: 7rem;
+  height: 6rem;
   margin: 1rem;
   border-top-right-radius: 50%;
   border-bottom-left-radius: 50%;
@@ -1837,7 +1846,7 @@ body.dimmed {
   margin: 0 1.5rem;
   transform: rotate(45deg); }
 
-.circle {
+.oval {
   width: 6rem;
   height: 6rem;
   margin: 0 1rem;
@@ -1865,14 +1874,6 @@ body.dimmed {
 .shaded {
   border: 5px solid;
   background: repeating-linear-gradient(45deg, #777, #777 5px, #fefefe 5px, #fefefe 12px); }
-
-.card {
-  box-shadow: 0 2px 5px #212121;
-  cursor: pointer;
-  transition: all .1s ease-in; }
-  .card:hover {
-    box-shadow: 0 2px 7px #212121;
-    transform: translateY(-2px); }
 
 .footer {
   background: #424242;
