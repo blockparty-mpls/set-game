@@ -111,7 +111,7 @@ function dealCards(cards) {
         html += newCard;
     }); 
     // add all dealt cards to the dom
-    return document.getElementById('gameboard').innerHTML = html;
+    return document.getElementById('gameboard').insertAdjacentHTML('beforeend', html);
 }
 
 // add event listener for cards in dom and put data attributes into object on click
