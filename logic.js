@@ -1,10 +1,4 @@
 //make the deck 
-var Card = function(color, number, shape, clarity) {
-    this.color = color;
-    this.number = number;
-    this.shape = shape;
-    this.clarity = clarity;
-};
 
 var colors = ['red', 'green', 'purple'];
 
@@ -35,13 +29,7 @@ var getDeck = function(){
     }
 }
 
-//console.log(getDeck());
-
-// console.log(deck[Math.floor(Math.random() * deck.length)]);
-
 getDeck();
-
-// console.log(deck);
 
 //The function below will shuffle the deck, but it seems like the getDeck function is already returning a shuffled deck?
 /**
@@ -76,12 +64,17 @@ var shuffle = function(array) {
 deck = shuffle(deck);
 
 // write a function that initially deals the cards
-function deal(){
+function deal9(){
     // grab the number of cards from the deck
     var initial = deck.slice(0,9);
     deck.splice(0, 9);
-    // console.log(initial);
-    // console.log(deck);
+    return initial;
+};
+
+function deal3(){
+    // grab the number of cards from the deck
+    var initial = deck.slice(0,3);
+    deck.splice(0, 3);
     return initial;
 };
 
@@ -114,43 +107,47 @@ function dealCards(cards) {
     return document.getElementById('gameboard').insertAdjacentHTML('beforeend', html);
 }
 
-// add event listener for cards in dom and put data attributes into object on click
-document.addEventListener('click',function(e){
-    if(e.target && e.target.className == 'game-card') {
-        let cardData = {
-            color: e.target.getAttribute('data-color'),
-            number: e.target.getAttribute('data-num'),
-            shape: e.target.getAttribute('data-shape'),
-            clarity: e.target.getAttribute('data-clarity')
-        };
-         chosenCards.push(cardData);
-         console.log(chosenCards);
-     } else if(e.target.parentNode.className == 'game-card') {
-        let cardData = {
-            color: e.target.parentNode.getAttribute('data-color'),
-            number: e.target.parentNode.getAttribute('data-num'),
-            shape: e.target.parentNode.getAttribute('data-shape'),
-            clarity: e.target.parentNode.getAttribute('data-clarity')
-        };
-        chosenCards.push(cardData);
-        console.log(chosenCards);
-     }
- });
+
+var clickHandler = function (event) {
+    
+    //check if clicked element or its parent has a [data-monster-id] attribute
+    var card = event.target.closest('.game-card');
+    if (card.classList.contains(`clicked`)) {
+        console.log(`duplicate!`);
+        return
+    }
+
+    card.className += ` clicked`;
+
+    let cardData = {
+        color: card.getAttribute('data-color'),
+        num: card.getAttribute('data-num'),
+        shape: card.getAttribute('data-shape'),
+        clarity: card.getAttribute('data-clarity')
+    };
+    
+    chosenCards.push(cardData);
+    console.log(chosenCards);
+    if (chosenCards.length === 3) {
+        checkSet(chosenCards);
+    }
+};
 
 // create new variable for the dealt cards at start of game
-const dealtCards = deal();
+let dealtCards = deal9();
+
 // use dealt cards variable in deal cards function
 dealCards(dealtCards);
 // create empty array for clicked/chosen cards - need to check (checkSet) once length is 3
-const chosenCards = [];
 
 // ==========================================
 // GAME LOGIC
 // ==========================================
 
-// deal();
+//+++++ GLOBAL VARIABLES ++++++++++++++++++
+let chosenCards = [];
+let userScore = 0;
 
-var cards = [deck[0], deck[1], deck[2]];
 
 //Create a function that checks an array of cards for "setness"
 /**
@@ -163,18 +160,18 @@ var checkSet = function(selected) {
     console.log(selected);
     //create four nested functions, one for each of the properties that you need to compare
     var checkColor = function(){
-        if (selected[0].colors === selected[1].colors && selected[0].colors === selected[2].colors && selected[1].colors === selected[2].colors){
+        if (selected[0].color === selected[1].color && selected[0].color === selected[2].color && selected[1].color === selected[2].color){
             return true
-        } else if (selected[0].colors !== selected[1].colors && selected[0].colors !== selected[2].colors && selected[1].colors !== selected[2].colors){
+        } else if (selected[0].color !== selected[1].color && selected[0].color !== selected[2].color && selected[1].color !== selected[2].color){
             return true
         } else {
             return false
         };
     };
     var checkNumber = function(){
-        if (selected[0].number === selected[1].number && selected[0].number === selected[2].number && selected[1].number === selected[2].number){
+        if (selected[0].num === selected[1].num && selected[0].num === selected[2].num && selected[1].num === selected[2].num){
             return true
-        } else if (selected[0].number !== selected[1].number && selected[0].number !== selected[2].number && selected[1].number !== selected[2].number){
+        } else if (selected[0].num !== selected[1].num && selected[0].num !== selected[2].num && selected[1].num !== selected[2].num){
             return true
         } else {
             return false
@@ -206,9 +203,20 @@ var checkSet = function(selected) {
 
     if (color === true && number === true && shape === true && clarity === true){
         console.log("You found a set!");
+        userScore ++;
+        chosenCards = [];
+        replaceCards(); 
     } else {
         console.log("That's not a set!");
+        chosenCards = [];
     };
 };
 
-checkSet(cards);
+var replaceCards = function () {
+    let replacement = deal3();
+    dealCards(replacement);
+    console.log(deck);
+
+}
+
+document.addEventListener('click', clickHandler, false);
