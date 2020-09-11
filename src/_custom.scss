@@ -26,20 +26,27 @@ $color-purple: purple;
     align-items: center;
     min-height: 12rem;
     margin: 1.5rem;
-
+    transform: scale(1);
     box-shadow: 0 2px 5px $color-grey-dark;
     cursor: pointer;
-    transition: all .1s ease-out;
-
-    // &:hover {
-    //   box-shadow: 0 2px 7px $color-grey-dark;
-    //   transform: translateY(-2px);
-    // }
+    transition: transform .2s ease-out;
   }
 
+// animation classes for selected cards
 .clicked {
   box-shadow: 0 0 10px 5px blue;
-  transform: translateY(-2px);
+}
+
+.shrink {
+  transform: scale(0);
+}
+
+.shrink > div {
+  opacity: 0;
+}
+
+.grow {
+  transform: scale(1);
 }
 
 // SHAPE CLASSES

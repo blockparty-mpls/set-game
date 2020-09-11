@@ -1825,13 +1825,22 @@ body.dimmed {
   align-items: center;
   min-height: 12rem;
   margin: 1.5rem;
+  transform: scale(1);
   box-shadow: 0 2px 5px #212121;
   cursor: pointer;
-  transition: all .1s ease-out; }
+  transition: transform .2s ease-out; }
 
 .clicked {
-  box-shadow: 0 0 10px 5px blue;
-  transform: translateY(-2px); }
+  box-shadow: 0 0 10px 5px blue; }
+
+.shrink {
+  transform: scale(0); }
+
+.shrink > div {
+  opacity: 0; }
+
+.grow {
+  transform: scale(1); }
 
 .squiggle {
   width: 5rem;

@@ -207,7 +207,7 @@ var checkSet = function(selected) {
     if (color === true && number === true && shape === true && clarity === true){
         console.log("You found a set!");
         userScore ++;
-        chosenCards = [];
+        // chosenCards = [];
         replaceCards(); 
     } else {
 
@@ -215,15 +215,17 @@ var checkSet = function(selected) {
         // TODO: this is for testing without getting a 'set' - need to replace with commented out code
         replaceCards();
 
+        // setTimeout(() => {
         // chosenCards.forEach(card => {
         //     chosenCards = [];
         //     // get the current ID for each chosen card
         //     cardId = card.id;
         //     // create reference for that element in the dom to which append the new data and shape divs
         //     cardEl = document.querySelector(`[data-id=${CSS.escape(cardId)}]`);
-        //     // remove the clicked class box shadow styles
-        //     cardEl.classList.remove('clicked');
-        // });
+        //         // remove the clicked class box shadow styles
+        //         cardEl.classList.remove('clicked');
+        //     });
+        // }, 300);
     };
 };
 
@@ -243,6 +245,15 @@ var replaceCards = function () {
         // remove the clicked class box shadow styles
         cardEl.classList.remove('clicked');
 
+        cardEl.classList.add('shrink');
+
+        cardEl.addEventListener('transitionend', (e) => {
+            console.log('transition has ended!');
+            e.target.classList.remove('shrink');
+            e.target.classList.add('grow');
+            e.target.classList.remove('grow');
+        });
+        
         // make the shape divs according to the number of shapes in each replacement card
         for(let i = 0; i < replacementCards[index].num; i++) {
             let shapeDiv = `<div class="${replacementCards[index].color} ${replacementCards[index].shape} ${replacementCards[index].clarity}"></div>`;
@@ -254,8 +265,10 @@ var replaceCards = function () {
             cardEl.setAttribute('data-shape', replacementCards[index].shape);
             cardEl.setAttribute('data-clarity', replacementCards[index].clarity);
         }
+
     });
 
+    // reset the array of clicked cards
     chosenCards = [];
 
     console.log(deck);
