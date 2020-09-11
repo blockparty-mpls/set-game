@@ -32,7 +32,7 @@ var getDeck = function(){
 // TODO: put this in a separate 'start' function 
 getDeck();
 
-//The function below will shuffle the deck, but it seems like the getDeck function is already returning a shuffled deck?
+//The function below will shuffle the deck
 /**
  * Randomly shuffle an array
  * https://stackoverflow.com/a/2450976/1293256
@@ -107,7 +107,7 @@ function dealCards(cards) {
     return document.getElementById('gameboard').insertAdjacentHTML('beforeend', html);
 }
 
-
+// create the function to handle clicks on the cards
 var clickHandler = function (event) {
     
     //check if clicked element or its parent has a [data-monster-id] attribute, if not do nothing
@@ -144,7 +144,6 @@ let dealtCards = deal12();
 
 // use dealt cards variable in deal cards function
 dealCards(dealtCards);
-// create empty array for clicked/chosen cards - need to check (checkSet) once length is 3
 
 // ==========================================
 // GAME LOGIC
@@ -209,14 +208,14 @@ var checkSet = function(selected) {
     if (color === true && number === true && shape === true && clarity === true){
         console.log("You found a set!");
         userScore ++;
-        // chosenCards = [];
         replaceCards(); 
     } else {
-
         console.log("That's not a set!");
+
         // TODO: this is for testing without getting a 'set' - need to replace with commented out code
         replaceCards();
 
+        // use a timeout for UI purposes
         // setTimeout(() => {
         // chosenCards.forEach(card => {
         //     chosenCards = [];
@@ -227,7 +226,7 @@ var checkSet = function(selected) {
         //         // remove the clicked class box shadow styles
         //         cardEl.classList.remove('clicked');
         //     });
-        // }, 300);
+        // }, 200);
     };
 };
 
@@ -237,6 +236,7 @@ var replaceCards = function () {
     let replacementCards= deal3();
     console.log('replacementCards cards: ',replacementCards)
 
+    // use a timeout for UI purposes 
     setTimeout(() => {
         chosenCards.forEach((card, index) => {
             
@@ -247,11 +247,10 @@ var replaceCards = function () {
             cardEl = document.querySelector(`[data-id=${CSS.escape(cardId)}]`);
             // remove the clicked class box shadow styles
             cardEl.classList.remove('clicked');
-    
+            // add the animation class
             cardEl.classList.add('shrink');
-    
+            // wait till first transition is finished, then remove first class and add second animation
             cardEl.addEventListener('transitionend', (e) => {
-                console.log('transition has ended!');
                 e.target.classList.remove('shrink');
                 e.target.classList.add('grow');
                 e.target.classList.remove('grow');
@@ -268,14 +267,12 @@ var replaceCards = function () {
                 cardEl.setAttribute('data-shape', replacementCards[index].shape);
                 cardEl.setAttribute('data-clarity', replacementCards[index].clarity);
             }
-    
         });
         // reset the array of clicked cards
         chosenCards = [];
-    }, 300);
+    }, 200);
     
-
-    console.log(deck);
+    // console.log(deck);
 
 }
 
