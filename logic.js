@@ -212,8 +212,18 @@ var checkSet = function(selected) {
     } else {
 
         console.log("That's not a set!");
+        // TODO: this is for testing without getting a 'set' - need to replace with commented out code
         replaceCards();
-        
+
+        // chosenCards.forEach(card => {
+        //     chosenCards = [];
+        //     // get the current ID for each chosen card
+        //     cardId = card.id;
+        //     // create reference for that element in the dom to which append the new data and shape divs
+        //     cardEl = document.querySelector(`[data-id=${CSS.escape(cardId)}]`);
+        //     // remove the clicked class box shadow styles
+        //     cardEl.classList.remove('clicked');
+        // });
     };
 };
 
