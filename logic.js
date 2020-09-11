@@ -63,10 +63,10 @@ var shuffle = function(array) {
 deck = shuffle(deck);
 
 // write a function that initially deals the cards
-function deal9(){
+function deal12(){
     // grab the number of cards from the deck
-    var initial = deck.slice(0,9);
-    deck.splice(0, 9);
+    var initial = deck.slice(0,12);
+    deck.splice(0, 12);
     return initial;
 };
 
@@ -95,7 +95,7 @@ function dealCards(cards) {
         // create new element with necessary divs and 'game-card' class for each card from the array
         // add data attributes to 'game-card' div
         let newCard = `
-            <div class="col-lg-4 col-med-6">
+            <div class="col-lg-3 col-med-4">
                 <div class="game-card" data-id=${i} data-color=${card.color} data-num=${card.num} data-shape=${card.shape} data-clarity=${card.clarity}>
                     ${shapes}
                 </div>
@@ -115,9 +115,11 @@ var clickHandler = function (event) {
     if(!card) {
         return;
     }
+    // if card is already selected, remove the styles and remove it from the chosenCards array
     if (card.classList.contains(`clicked`)) {
-        console.log(`duplicate!`);
-        return
+        const newArr = chosenCards.filter(chosen => chosen.id !== card.dataset.id);
+        card.classList.remove('clicked');
+        return chosenCards = newArr;
     }
 
     card.className += ` clicked`;
@@ -131,14 +133,14 @@ var clickHandler = function (event) {
     };
     
     chosenCards.push(cardData);
-    console.log(chosenCards);
+    console.log('chosenCards array: ', chosenCards);
     if (chosenCards.length === 3) {
         checkSet(chosenCards);
     }
 };
 
 // create new variable for the dealt cards at start of game
-let dealtCards = deal9();
+let dealtCards = deal12();
 
 // use dealt cards variable in deal cards function
 dealCards(dealtCards);
@@ -234,42 +236,44 @@ var replaceCards = function () {
     // create variable for the array of replacemlent cards
     let replacementCards= deal3();
     console.log('replacementCards cards: ',replacementCards)
+
+    setTimeout(() => {
+        chosenCards.forEach((card, index) => {
+            
+            let shapes = '';
+            // get the current ID for each chosen card
+            cardId = card.id;
+            // create reference for that element in the dom to which append the new data and shape divs
+            cardEl = document.querySelector(`[data-id=${CSS.escape(cardId)}]`);
+            // remove the clicked class box shadow styles
+            cardEl.classList.remove('clicked');
     
-    chosenCards.forEach((card, index) => {
-        
-        let shapes = '';
-        // get the current ID for each chosen card
-        cardId = card.id;
-        // create reference for that element in the dom to which append the new data and shape divs
-        cardEl = document.querySelector(`[data-id=${CSS.escape(cardId)}]`);
-        // remove the clicked class box shadow styles
-        cardEl.classList.remove('clicked');
-
-        cardEl.classList.add('shrink');
-
-        cardEl.addEventListener('transitionend', (e) => {
-            console.log('transition has ended!');
-            e.target.classList.remove('shrink');
-            e.target.classList.add('grow');
-            e.target.classList.remove('grow');
+            cardEl.classList.add('shrink');
+    
+            cardEl.addEventListener('transitionend', (e) => {
+                console.log('transition has ended!');
+                e.target.classList.remove('shrink');
+                e.target.classList.add('grow');
+                e.target.classList.remove('grow');
+            });
+            
+            // make the shape divs according to the number of shapes in each replacement card
+            for(let i = 0; i < replacementCards[index].num; i++) {
+                let shapeDiv = `<div class="${replacementCards[index].color} ${replacementCards[index].shape} ${replacementCards[index].clarity}"></div>`;
+                shapes += shapeDiv;
+                // append shapes and set attributes on clicked/existing div in the grid
+                cardEl.innerHTML = shapes;
+                cardEl.setAttribute('data-color', replacementCards[index].color);
+                cardEl.setAttribute('data-num', replacementCards[index].num);
+                cardEl.setAttribute('data-shape', replacementCards[index].shape);
+                cardEl.setAttribute('data-clarity', replacementCards[index].clarity);
+            }
+    
         });
-        
-        // make the shape divs according to the number of shapes in each replacement card
-        for(let i = 0; i < replacementCards[index].num; i++) {
-            let shapeDiv = `<div class="${replacementCards[index].color} ${replacementCards[index].shape} ${replacementCards[index].clarity}"></div>`;
-            shapes += shapeDiv;
-            // append shapes and set attributes on clicked/existing div in the grid
-            cardEl.innerHTML = shapes;
-            cardEl.setAttribute('data-color', replacementCards[index].color);
-            cardEl.setAttribute('data-num', replacementCards[index].num);
-            cardEl.setAttribute('data-shape', replacementCards[index].shape);
-            cardEl.setAttribute('data-clarity', replacementCards[index].clarity);
-        }
-
-    });
-
-    // reset the array of clicked cards
-    chosenCards = [];
+        // reset the array of clicked cards
+        chosenCards = [];
+    }, 300);
+    
 
     console.log(deck);
 

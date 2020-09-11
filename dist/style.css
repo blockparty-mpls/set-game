@@ -1047,39 +1047,39 @@ body.dimmed {
 */
 .container {
   width: 100%;
-  padding-right: 1.5rem;
-  padding-left: 1.5rem;
+  padding-right: 0.5rem;
+  padding-left: 0.5rem;
   margin-right: auto;
   margin-left: auto; }
 
 .container-stretch {
   width: 100%;
-  padding-right: 1.5rem;
-  padding-left: 1.5rem;
+  padding-right: 0.5rem;
+  padding-left: 0.5rem;
   margin-right: auto;
   margin-left: auto; }
 
 .container-sm {
   max-width: calc(480px * 0.95);
   width: 100%;
-  padding-right: 1.5rem;
-  padding-left: 1.5rem;
+  padding-right: 0.5rem;
+  padding-left: 0.5rem;
   margin-right: auto;
   margin-left: auto; }
 
 .container-med {
   max-width: calc(850px * 0.95);
   width: 100%;
-  padding-right: 1.5rem;
-  padding-left: 1.5rem;
+  padding-right: 0.5rem;
+  padding-left: 0.5rem;
   margin-right: auto;
   margin-left: auto; }
 
 .container-lg {
   max-width: calc(992px * 0.95);
   width: 100%;
-  padding-right: 1.5rem;
-  padding-left: 1.5rem;
+  padding-right: 0.5rem;
+  padding-left: 0.5rem;
   margin-right: auto;
   margin-left: auto; }
 
@@ -1104,8 +1104,8 @@ body.dimmed {
   display: flex;
   -ms-flex-wrap: wrap;
   flex-wrap: wrap;
-  margin-right: -1.5rem;
-  margin-left: -1.5rem; }
+  margin-right: -0.5rem;
+  margin-left: -0.5rem; }
 
 .row-gallery {
   max-height: 20rem;
@@ -1114,8 +1114,8 @@ body.dimmed {
 .col-1, .col-sm-1, .col-med-1, .col-lg-1, .col, .col-sm, .col-med, .col-lg, .col-2, .col-sm-2, .col-med-2, .col-lg-2, .col-3, .col-sm-3, .col-med-3, .col-lg-3, .col-4, .col-sm-4, .col-med-4, .col-lg-4, .col-5, .col-sm-5, .col-med-5, .col-lg-5, .col-6, .col-sm-6, .col-med-6, .col-lg-6, .col-7, .col-sm-7, .col-med-7, .col-lg-7, .col-8, .col-sm-8, .col-med-8, .col-lg-8, .col-9, .col-sm-9, .col-med-9, .col-lg-9, .col-10, .col-sm-10, .col-med-10, .col-lg-10, .col-11, .col-sm-11, .col-med-11, .col-lg-11, .col-12, .col-sm-12, .col-med-12, .col-lg-12 {
   position: relative;
   width: 100%;
-  padding-right: 1.5rem;
-  padding-left: 1.5rem; }
+  padding-right: 0.5rem;
+  padding-left: 0.5rem; }
 
 [class*="row-cols-"] > * {
   flex: 0 0 100%;
