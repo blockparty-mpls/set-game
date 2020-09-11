@@ -1827,10 +1827,11 @@ body.dimmed {
   margin: 1.5rem;
   box-shadow: 0 2px 5px #212121;
   cursor: pointer;
-  transition: all .1s ease-in; }
-  .game-card:hover {
-    box-shadow: 0 2px 7px #212121;
-    transform: translateY(-2px); }
+  transition: all .1s ease-out; }
+
+.clicked {
+  box-shadow: 0 0 10px 5px blue;
+  transform: translateY(-2px); }
 
 .squiggle {
   width: 5rem;

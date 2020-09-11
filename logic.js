@@ -83,7 +83,7 @@ function dealCards(cards) {
     // empty html string to concatenate before appending to dom
     let html = '';
     // loop through the number of the 'cards' argument
-    cards.forEach(card => {
+    cards.forEach((card, i) => {
         // create empty variable for shapes
         let shapes = '';
         // determine how many divs to nest within this new div element based on the 'num' property of each card
@@ -96,7 +96,7 @@ function dealCards(cards) {
         // add data attributes to 'game-card' div
         let newCard = `
             <div class="col-lg-4 col-med-6">
-                <div class="game-card" data-color=${card.color} data-num=${card.num} data-shape=${card.shape} data-clarity=${card.clarity}>
+                <div class="game-card" data-id=${i} data-color=${card.color} data-num=${card.num} data-shape=${card.shape} data-clarity=${card.clarity}>
                     ${shapes}
                 </div>
             </div>
@@ -112,6 +112,9 @@ var clickHandler = function (event) {
     
     //check if clicked element or its parent has a [data-monster-id] attribute
     var card = event.target.closest('.game-card');
+    if(!card) {
+        return;
+    }
     if (card.classList.contains(`clicked`)) {
         console.log(`duplicate!`);
         return
@@ -120,6 +123,7 @@ var clickHandler = function (event) {
     card.className += ` clicked`;
 
     let cardData = {
+        id: card.getAttribute('data-id'),
         color: card.getAttribute('data-color'),
         num: card.getAttribute('data-num'),
         shape: card.getAttribute('data-shape'),
@@ -207,14 +211,51 @@ var checkSet = function(selected) {
         chosenCards = [];
         replaceCards(); 
     } else {
+
         console.log("That's not a set!");
+        let replacementCards= deal3();
+        console.log('replacementCards cards: ',replacementCards)
+        
+        chosenCards.forEach((card, index) => {
+            
+            let shapes = '';
+
+            cardId = card.id;
+            cardEl = document.querySelector(`[data-id=${CSS.escape(cardId)}]`);
+            cardEl.classList.remove('clicked');
+
+            for(let i = 0; i < replacementCards[index].num; i++) {
+                let shapeDiv = `<div class="${replacementCards[index].color} ${replacementCards[index].shape} ${replacementCards[index].clarity}"></div>`;
+                shapes += shapeDiv;
+                cardEl.innerHTML = shapes;
+                cardEl.setAttribute('data-color', replacementCards[index].color);
+                cardEl.setAttribute('data-num', replacementCards[index].num);
+                cardEl.setAttribute('data-shape', replacementCards[index].shape);
+                cardEl.setAttribute('data-clarity', replacementCards[index].clarity);
+            }
+
+            console.log('shapes each time around in replacement foreach:',shapes);
+
+        });
+
         chosenCards = [];
+
     };
 };
 
 var replaceCards = function () {
     let replacement = deal3();
-    dealCards(replacement);
+    console.log(replacement);
+
+    chosenCards.forEach(card => {
+        cardId = card.id;
+        cardEl = document.querySelector(`[data-id=${CSS.escape(cardId)}]`);
+        // cardEl.classList.remove('clicked');
+        
+
+    });
+
+    // dealCards(replacement);
     console.log(deck);
 
 }

@@ -29,13 +29,18 @@ $color-purple: purple;
 
     box-shadow: 0 2px 5px $color-grey-dark;
     cursor: pointer;
-    transition: all .1s ease-in;
+    transition: all .1s ease-out;
 
-    &:hover {
-      box-shadow: 0 2px 7px $color-grey-dark;
-      transform: translateY(-2px);
-    }
+    // &:hover {
+    //   box-shadow: 0 2px 7px $color-grey-dark;
+    //   transform: translateY(-2px);
+    // }
   }
+
+.clicked {
+  box-shadow: 0 0 10px 5px blue;
+  transform: translateY(-2px);
+}
 
 // SHAPE CLASSES
 .squiggle {
