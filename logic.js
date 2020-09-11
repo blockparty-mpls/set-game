@@ -29,6 +29,7 @@ var getDeck = function(){
     }
 }
 
+// TODO: put this in a separate 'start' function 
 getDeck();
 
 //The function below will shuffle the deck, but it seems like the getDeck function is already returning a shuffled deck?
@@ -59,8 +60,6 @@ var shuffle = function(array) {
 
 };
 
-//console.log(shuffle(deck));
-
 deck = shuffle(deck);
 
 // write a function that initially deals the cards
@@ -71,11 +70,12 @@ function deal9(){
     return initial;
 };
 
+// function that deals the replacement cards
 function deal3(){
     // grab the number of cards from the deck
-    var initial = deck.slice(0,3);
+    var replacement = deck.slice(0,3);
     deck.splice(0, 3);
-    return initial;
+    return replacement;
 };
 
 // Function to display the dealt cards in the UI
@@ -110,7 +110,7 @@ function dealCards(cards) {
 
 var clickHandler = function (event) {
     
-    //check if clicked element or its parent has a [data-monster-id] attribute
+    //check if clicked element or its parent has a [data-monster-id] attribute, if not do nothing
     var card = event.target.closest('.game-card');
     if(!card) {
         return;
@@ -151,7 +151,6 @@ dealCards(dealtCards);
 //+++++ GLOBAL VARIABLES ++++++++++++++++++
 let chosenCards = [];
 let userScore = 0;
-
 
 //Create a function that checks an array of cards for "setness"
 /**
@@ -213,49 +212,42 @@ var checkSet = function(selected) {
     } else {
 
         console.log("That's not a set!");
-        let replacementCards= deal3();
-        console.log('replacementCards cards: ',replacementCards)
+        replaceCards();
         
-        chosenCards.forEach((card, index) => {
-            
-            let shapes = '';
-
-            cardId = card.id;
-            cardEl = document.querySelector(`[data-id=${CSS.escape(cardId)}]`);
-            cardEl.classList.remove('clicked');
-
-            for(let i = 0; i < replacementCards[index].num; i++) {
-                let shapeDiv = `<div class="${replacementCards[index].color} ${replacementCards[index].shape} ${replacementCards[index].clarity}"></div>`;
-                shapes += shapeDiv;
-                cardEl.innerHTML = shapes;
-                cardEl.setAttribute('data-color', replacementCards[index].color);
-                cardEl.setAttribute('data-num', replacementCards[index].num);
-                cardEl.setAttribute('data-shape', replacementCards[index].shape);
-                cardEl.setAttribute('data-clarity', replacementCards[index].clarity);
-            }
-
-            console.log('shapes each time around in replacement foreach:',shapes);
-
-        });
-
-        chosenCards = [];
-
     };
 };
 
+
 var replaceCards = function () {
-    let replacement = deal3();
-    console.log(replacement);
-
-    chosenCards.forEach(card => {
-        cardId = card.id;
-        cardEl = document.querySelector(`[data-id=${CSS.escape(cardId)}]`);
-        // cardEl.classList.remove('clicked');
+    // create variable for the array of replacemlent cards
+    let replacementCards= deal3();
+    console.log('replacementCards cards: ',replacementCards)
+    
+    chosenCards.forEach((card, index) => {
         
+        let shapes = '';
+        // get the current ID for each chosen card
+        cardId = card.id;
+        // create reference for that element in the dom to which append the new data and shape divs
+        cardEl = document.querySelector(`[data-id=${CSS.escape(cardId)}]`);
+        // remove the clicked class box shadow styles
+        cardEl.classList.remove('clicked');
 
+        // make the shape divs according to the number of shapes in each replacement card
+        for(let i = 0; i < replacementCards[index].num; i++) {
+            let shapeDiv = `<div class="${replacementCards[index].color} ${replacementCards[index].shape} ${replacementCards[index].clarity}"></div>`;
+            shapes += shapeDiv;
+            // append shapes and set attributes on clicked/existing div in the grid
+            cardEl.innerHTML = shapes;
+            cardEl.setAttribute('data-color', replacementCards[index].color);
+            cardEl.setAttribute('data-num', replacementCards[index].num);
+            cardEl.setAttribute('data-shape', replacementCards[index].shape);
+            cardEl.setAttribute('data-clarity', replacementCards[index].clarity);
+        }
     });
 
-    // dealCards(replacement);
+    chosenCards = [];
+
     console.log(deck);
 
 }
