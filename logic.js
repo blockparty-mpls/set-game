@@ -1,3 +1,9 @@
+
+//+++++ GLOBAL VARIABLES ++++++++++++++++++
+let chosenCards = [];
+let userScore = 0;
+let scoreboard = document.getElementById('scoreboard');
+
 //make the deck 
 
 var colors = ['red', 'green', 'purple'];
@@ -102,6 +108,7 @@ function dealCards(cards) {
             </div>
         `
         html += newCard;
+        scoreboard.innerHTML = userScore;
     }); 
     // add all dealt cards to the dom
     return document.getElementById('gameboard').insertAdjacentHTML('beforeend', html);
@@ -135,7 +142,7 @@ var clickHandler = function (event) {
     chosenCards.push(cardData);
     console.log('chosenCards array: ', chosenCards);
     if (chosenCards.length === 3) {
-        checkSet(chosenCards);
+       checkSet(chosenCards);
     }
 };
 
@@ -148,10 +155,6 @@ dealCards(dealtCards);
 // ==========================================
 // GAME LOGIC
 // ==========================================
-
-//+++++ GLOBAL VARIABLES ++++++++++++++++++
-let chosenCards = [];
-let userScore = 0;
 
 //Create a function that checks an array of cards for "setness"
 /**
@@ -208,12 +211,13 @@ var checkSet = function(selected) {
     if (color === true && number === true && shape === true && clarity === true){
         console.log("You found a set!");
         userScore ++;
+        scoreboard.innerHTML = userScore;
         replaceCards(); 
     } else {
         console.log("That's not a set!");
 
         // TODO: this is for testing without getting a 'set' - need to replace with commented out code
-        replaceCards();
+        return;
 
         // use a timeout for UI purposes
         // setTimeout(() => {
