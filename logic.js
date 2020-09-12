@@ -2,7 +2,10 @@
 //+++++ GLOBAL VARIABLES ++++++++++++++++++
 let chosenCards = [];
 let userScore = 0;
-let scoreboard = document.getElementById('scoreboard');
+const scoreboard = document.getElementById('scoreboard');
+const timer = document.getElementById('timer');
+
+
 
 //make the deck 
 
@@ -69,19 +72,11 @@ var shuffle = function(array) {
 deck = shuffle(deck);
 
 // write a function that initially deals the cards
-function deal12(){
+function deal(cardNumber){
     // grab the number of cards from the deck
-    var initial = deck.slice(0,12);
-    deck.splice(0, 12);
-    return initial;
-};
-
-// function that deals the replacement cards
-function deal3(){
-    // grab the number of cards from the deck
-    var replacement = deck.slice(0,3);
-    deck.splice(0, 3);
-    return replacement;
+    var cards = deck.slice(0, cardNumber);
+    deck.splice(0, cardNumber);
+    return cards;
 };
 
 // Function to display the dealt cards in the UI
@@ -147,7 +142,7 @@ var clickHandler = function (event) {
 };
 
 // create new variable for the dealt cards at start of game
-let dealtCards = deal12();
+let dealtCards = deal(12);
 
 // use dealt cards variable in deal cards function
 dealCards(dealtCards);
@@ -212,12 +207,19 @@ var checkSet = function(selected) {
         console.log("You found a set!");
         userScore ++;
         scoreboard.innerHTML = userScore;
-        replaceCards(); 
+        if (deck.length) {
+            console.log(deck);
+            replaceCards(); 
+        }
+        
     } else {
-        console.log("That's not a set!");
+        console.log(deck);
+        if (deck.length) {
+            replaceCards();
+        }
 
         // TODO: this is for testing without getting a 'set' - need to replace with commented out code
-        return;
+        //return;
 
         // use a timeout for UI purposes
         // setTimeout(() => {
@@ -237,8 +239,8 @@ var checkSet = function(selected) {
 
 var replaceCards = function () {
     // create variable for the array of replacemlent cards
-    let replacementCards= deal3();
-    console.log('replacementCards cards: ',replacementCards)
+    let replacementCards= deal(3);
+    console.log('replacementCards cards: ', replacementCards)
 
     // use a timeout for UI purposes 
     setTimeout(() => {
