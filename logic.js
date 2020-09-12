@@ -1,11 +1,23 @@
-
 //+++++ GLOBAL VARIABLES ++++++++++++++++++
 let chosenCards = [];
 let userScore = 0;
+let timeLeft = 5;
 const scoreboard = document.getElementById('scoreboard');
 const timer = document.getElementById('timer');
 
+// create the timer function
+function startTimer() {
+    //add checktimer
+    if(timeLeft === 0) {
+        console.log("time's up!");
+        clearInterval(setTimer);
+        // add function to end game and reset variables
+    }
+    timer.innerText = timeLeft;
+    timeLeft--;
+};
 
+setTimer = setInterval(startTimer, 1000);
 
 //make the deck 
 
