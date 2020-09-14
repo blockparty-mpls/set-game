@@ -41,6 +41,28 @@ signupForm.addEventListener('submit', (e) => {
     });
 });
 
+// login
+const loginForm = document.querySelector('#login-form');
+loginForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    // get user info
+    const email = loginForm['login-email'].value;
+    const password = loginForm['login-password'].value;
+
+    // log the user in
+    auth.signInWithEmailAndPassword(email, password).then(cred => {
+        loginForm.reset();
+        document.querySelector('.modal-overlay').remove();
+        
+        document.querySelectorAll('.modal').forEach(modal => {
+            modal.classList.remove('open');
+        });
+    }).catch(err => {
+        loginForm.querySelector('.error').innerHTML = err.message;
+    });
+});
+
 // logout
 const logout = document.querySelector('#logout');
 logout.addEventListener('click', (e) => {
