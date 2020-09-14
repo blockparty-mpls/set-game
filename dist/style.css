@@ -1867,6 +1867,10 @@ body.dimmed {
   color: #eee;
   padding: 1.5rem; }
 
+.profile {
+  background: blue;
+  text-align: center; }
+
 .main {
   padding: 2.5rem 0; }
 
