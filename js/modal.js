@@ -19,21 +19,26 @@ var modal = document.getElementById("myModal");
 var btn = document.getElementById("myBtn");
 
 // Get the <span> element that closes the modal
-var span = document.getElementsByClassName("modal__close")[0];
+var modalClose = document.querySelector('.modal__close');
 
 // When the user clicks the button, open the modal 
-btn.onclick = function() {
-  modal.style.display = "block";
+btn.onclick = function () {
+    // create the modal overlay element
+    modalOverlayElement = `<div class="modal-overlay"></div>`;
+    modal.insertAdjacentHTML('afterend', modalOverlayElement);
+    modal.classList.toggle('open');
 }
 
 // When the user clicks on <span> (x), close the modal
-span.onclick = function() {
-    modal.style.display = "none";
-  }
+modalClose.onclick = function () {
+    modal.classList.toggle('open');
+    document.querySelector('.modal-overlay').remove();
+}
 
 // When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
-  }
+window.onclick = function (e) {
+    if (e.target.classList.contains('modal-overlay')) {
+        modal.classList.toggle('open');
+        e.target.remove();         
+    }
 }
