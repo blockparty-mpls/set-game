@@ -341,7 +341,7 @@ textarea {
 //===================================================
 
 .modal {
-  visibility: hidden;
+  display: none;
   position: fixed;
   z-index: 99999;
   left: 0;
@@ -354,14 +354,9 @@ textarea {
   overflow-y: auto;
   border-radius: $border-radius;
   will-change: transform, opacity;
-  opacity: 0;
-  transform: scale(.5);
-  transition: all .3s ease-out;
 
   &.open {
-    opacity: 1;
-    transform: scale(1);
-    visibility: visible;
+    display: block;
   }
 
   &__close {
@@ -392,6 +387,21 @@ textarea {
   width: 100%;
   background: rgba($color: $color-grey-dark, $alpha: .85);
   will-change: opacity;
+}
+
+.modal-fade-in {
+  animation: modal-fade-in .3s ease-out;
+}
+
+@keyframes modal-fade-in {
+  0% {
+    opacity: 0;
+    transform: scale(0);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 //===================================================

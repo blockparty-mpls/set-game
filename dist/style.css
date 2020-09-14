@@ -632,7 +632,7 @@ textarea.is-success:active {
       margin: 0; }
 
 .modal {
-  visibility: hidden;
+  display: none;
   position: fixed;
   z-index: 99999;
   left: 0;
@@ -644,14 +644,9 @@ textarea.is-success:active {
   margin: auto;
   overflow-y: auto;
   border-radius: 0.5rem;
-  will-change: transform, opacity;
-  opacity: 0;
-  transform: scale(0.5);
-  transition: all .3s ease-out; }
+  will-change: transform, opacity; }
   .modal.open {
-    opacity: 1;
-    transform: scale(1);
-    visibility: visible; }
+    display: block; }
   .modal__close {
     position: absolute;
     top: .5rem;
@@ -675,6 +670,17 @@ textarea.is-success:active {
   width: 100%;
   background: rgba(33, 33, 33, 0.85);
   will-change: opacity; }
+
+.modal-fade-in {
+  animation: modal-fade-in .3s ease-out; }
+
+@keyframes modal-fade-in {
+  0% {
+    opacity: 0;
+    transform: scale(0); }
+  100% {
+    opacity: 1;
+    transform: scale(1); } }
 
 blockquote {
   background: transparent;

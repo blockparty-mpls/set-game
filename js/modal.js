@@ -10,6 +10,7 @@ modalClicks.forEach(modal => {
         modalOverlayElement = `<div class="modal-overlay"></div>`;
         modalElement.insertAdjacentHTML('afterend', modalOverlayElement);
         modalElement.classList.toggle('open');
+        modalElement.classList.add('modal-fade-in');
     });
 });
 
@@ -19,6 +20,7 @@ modalClose.forEach(item => {
         modals.forEach(modal => {
             if(modal.classList.contains('open')) {
                 modal.classList.remove('open');
+                modal.classList.remove('modal-fade-in');
                 document.querySelector('.modal-overlay').remove();
             }
         });
@@ -31,6 +33,7 @@ window.onclick = function (e) {
         modals.forEach(modal => {
             if(modal.classList.contains('open')) {
                 modal.classList.remove('open');
+                modal.classList.remove('modal-fade-in');
             }
         });
         e.target.remove();         
