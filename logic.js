@@ -1,11 +1,8 @@
-
 //+++++ GLOBAL VARIABLES ++++++++++++++++++
 let chosenCards = [];
 let userScore = 0;
 const scoreboard = document.getElementById('scoreboard');
 const timer = document.getElementById('timer');
-
-let timeRemaining = 60;
 
 
 //make the deck 
