@@ -1942,3 +1942,12 @@ body.dimmed {
   background: #424242;
   color: #eee;
   padding: 1.5rem 0; }
+
+.grow-center {
+  animation: grow-center .5s ease-out; }
+
+@keyframes grow-center {
+  0% {
+    transform: scale(0); }
+  100% {
+    transform: scale(1); } }

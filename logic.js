@@ -109,7 +109,7 @@ function dealCards(cards) {
         // add data attributes to 'game-card' div
         let newCard = `
             <div class="col-lg-3 col-med-4">
-                <div class="game-card" data-id=${i} data-color=${card.color} data-num=${card.num} data-shape=${card.shape} data-clarity=${card.clarity}>
+                <div class="game-card grow-center" data-id=${i} data-color=${card.color} data-num=${card.num} data-shape=${card.shape} data-clarity=${card.clarity}>
                     ${shapes}
                 </div>
             </div>
@@ -118,7 +118,14 @@ function dealCards(cards) {
         scoreboard.innerHTML = userScore;
     }); 
     // add all dealt cards to the dom
-    return document.getElementById('gameboard').insertAdjacentHTML('beforeend', html);
+    document.getElementById('gameboard').insertAdjacentHTML('beforeend', html);
+    // remove the animation class from card divs
+    document.querySelectorAll('.game-card').forEach(card => {
+        card.addEventListener('transitionend', (e) => {
+            card.classList.remove('grow-center');
+        })
+    });
+
 }
 
 // create the function to handle clicks on the cards
