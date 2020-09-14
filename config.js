@@ -1,4 +1,4 @@
-// Your web app's Firebase configuration
+// Firebase configuration
 var firebaseConfig = {
     apiKey: "AIzaSyBoNDPoBUzEVcgU3gwyysYVcUcMHcVvLV4",
     authDomain: "nik-and-ryan.firebaseapp.com",
@@ -15,6 +15,10 @@ firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth();
 const db = firebase.firestore();
 
+// get the UI elements from the dom
+const loggedOutLinks = document.querySelectorAll('.logged-out');
+const loggedInLinks = document.querySelectorAll('.logged-in');
+
 // signup
 const signupForm = document.querySelector('#signup-form');
 signupForm.addEventListener('submit', (e) => {
@@ -26,18 +30,26 @@ signupForm.addEventListener('submit', (e) => {
 
     // sign up the user
     auth.createUserWithEmailAndPassword(email, password).then(cred => {
+
+        const username = signupForm['signup-username'].value.trim().toString();
+        const user = firebase.auth().currentUser;
+
+        // add the username to the user object
+        return user.updateProfile({
+          displayName: username
+        });
+
+    }).then(() => {
+
         console.log('user created!');
         signupForm.reset();
         document.querySelector('.modal-overlay').remove();
-        
         document.querySelectorAll('.modal').forEach(modal => {
             modal.classList.remove('open');
         });
 
     }).catch(err => {
-        // alert(err.message);
         document.querySelector('.error').textContent = err.message;
-        console.log(err);
     });
 });
 
@@ -54,7 +66,6 @@ loginForm.addEventListener('submit', (e) => {
     auth.signInWithEmailAndPassword(email, password).then(cred => {
         loginForm.reset();
         document.querySelector('.modal-overlay').remove();
-        
         document.querySelectorAll('.modal').forEach(modal => {
             modal.classList.remove('open');
         });
@@ -68,7 +79,17 @@ const logout = document.querySelector('#logout');
 logout.addEventListener('click', (e) => {
     e.preventDefault();
     auth.signOut();
-    // auth.signOut().then(() => {
-    //     console.log('the user has signed out');
-    // });
 });
+
+// hide/show UI elements depending on user state
+const setupUI = (user) => {
+    if(user) {
+        // toggle UI elements
+        loggedInLinks.forEach(item => item.style.display = 'block');
+        loggedOutLinks.forEach(item => item.style.display = 'none');
+    } else {
+        // toggle UI elements
+        loggedInLinks.forEach(item => item.style.display = 'none');
+        loggedOutLinks.forEach(item => item.style.display = 'block');
+    }
+}
