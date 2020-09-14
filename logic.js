@@ -5,6 +5,7 @@ let userScore = 0;
 const scoreboard = document.getElementById('scoreboard');
 const timer = document.getElementById('timer');
 
+let timeRemaining = 60;
 
 
 //make the deck 
@@ -18,6 +19,7 @@ var shapes = ['diamond', 'squiggle', 'oval'];
 var clarity = ['transparent', 'shaded', 'opaque'];
 
 var deck = [];
+
 
 var getDeck = function(){
 
@@ -40,6 +42,19 @@ var getDeck = function(){
 
 // TODO: put this in a separate 'start' function 
 getDeck();
+
+//Create a timer function
+function startTimer () {
+    if (!timeRemaining){
+        alert(`Game Over!`);
+        return
+    };
+    timer.innerText = timeRemaining;
+    timeRemaining--;
+
+}
+
+setInterval(startTimer, 1000);
 
 //The function below will shuffle the deck
 /**
