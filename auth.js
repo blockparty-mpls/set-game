@@ -3,7 +3,6 @@ auth.onAuthStateChanged(user => {
     console.log(user);
     if(user) {
         console.log('user logged in: ', user.email);
-        console.log('display name: ', user.displayName);
         setupUI(user);
     } else {
         console.log('user logged out');
@@ -22,8 +21,8 @@ signupForm.addEventListener('submit', (e) => {
     e.preventDefault();
 
     // get user info
-    const email = signupForm['signup-email'].value;
-    const password = signupForm['signup-password'].value;
+    const email = signupForm['signup-email'].value.trim();
+    const password = signupForm['signup-password'].value.trim();
 
     // sign up the user
     auth.createUserWithEmailAndPassword(email, password).then(cred => {
@@ -31,10 +30,13 @@ signupForm.addEventListener('submit', (e) => {
         const username = signupForm['signup-username'].value.trim().toString();
         const user = firebase.auth().currentUser;
 
-        // add the username to the user object
-        return user.updateProfile({
-          displayName: username
-        });
+        if(user){
+            user.updateProfile({
+                displayName: username
+            }).then(
+                (res)=> setupUI(user)
+            )
+        }        
 
     }).then(() => {
 
