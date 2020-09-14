@@ -28,6 +28,12 @@ signupForm.addEventListener('submit', (e) => {
     auth.createUserWithEmailAndPassword(email, password).then(cred => {
         console.log('user created!');
         signupForm.reset();
+        document.querySelector('.modal-overlay').remove();
+        
+        document.querySelectorAll('.modal').forEach(modal => {
+            modal.classList.remove('open');
+        });
+
     }).catch(err => {
         // alert(err.message);
         document.querySelector('.error').textContent = err.message;

@@ -341,6 +341,7 @@ textarea {
 //===================================================
 
 .modal {
+  visibility: hidden;
   position: fixed;
   z-index: 99999;
   left: 0;
@@ -360,6 +361,7 @@ textarea {
   &.open {
     opacity: 1;
     transform: scale(1);
+    visibility: visible;
   }
 
   &__close {

@@ -1,7 +1,7 @@
 // get all the modal click  elements in the dom
 const modalClicks = document.querySelectorAll('.modal-click');
 const modals = document.querySelectorAll('.modal');
-const modalClose = document.querySelector('.modal__close');
+const modalClose = document.querySelectorAll('.modal__close');
 
 modalClicks.forEach(modal => {
     modal.addEventListener('click', (e) => {
@@ -14,18 +14,24 @@ modalClicks.forEach(modal => {
 });
 
 // When the user clicks on <span> (x), close the modal
-modalClose.onclick = function () {
-    modals.forEach(modal => {
-        modal.classList.toggle('open');
+modalClose.forEach(item => {
+    item.addEventListener('click', (e) => {
+        modals.forEach(modal => {
+            if(modal.classList.contains('open')) {
+                modal.classList.remove('open');
+                document.querySelector('.modal-overlay').remove();
+            }
+        });
     });
-    document.querySelector('.modal-overlay').remove();
-}
+});
 
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function (e) {
     if (e.target.classList.contains('modal-overlay')) {
         modals.forEach(modal => {
-            modal.classList.toggle('open');
+            if(modal.classList.contains('open')) {
+                modal.classList.remove('open');
+            }
         });
         e.target.remove();         
     }

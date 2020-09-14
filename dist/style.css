@@ -632,6 +632,7 @@ textarea.is-success:active {
       margin: 0; }
 
 .modal {
+  visibility: hidden;
   position: fixed;
   z-index: 99999;
   left: 0;
@@ -649,7 +650,8 @@ textarea.is-success:active {
   transition: all .3s ease-out; }
   .modal.open {
     opacity: 1;
-    transform: scale(1); }
+    transform: scale(1);
+    visibility: visible; }
   .modal__close {
     position: absolute;
     top: .5rem;
