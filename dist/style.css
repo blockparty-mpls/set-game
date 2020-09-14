@@ -636,7 +636,7 @@ textarea.is-success:active {
   z-index: 99999;
   left: 0;
   right: 0;
-  background-color: #fafafa;
+  background-color: #eee;
   padding: 2rem;
   max-height: 70%;
   width: 55%;
@@ -671,7 +671,7 @@ textarea.is-success:active {
   right: 0;
   height: 125%;
   width: 100%;
-  background: rgba(33, 33, 33, 0.9);
+  background: rgba(33, 33, 33, 0.85);
   will-change: opacity; }
 
 blockquote {

@@ -332,6 +332,12 @@ textarea {
 
 //===================================================
 // MODAL
+// <div id="{data-target}" class="modal">
+//     <div class="modal__content">
+//         <span class="modal__close">&times;</span>
+//          { MODAL CONTENT HERE }
+//     </div>
+// </div>
 //===================================================
 
 .modal {
@@ -339,7 +345,7 @@ textarea {
   z-index: 99999;
   left: 0;
   right: 0;
-  background-color: #fafafa;
+  background-color: $color-grey-light;
   padding: 2rem;
   max-height: 70%;
   width: 55%;
@@ -382,7 +388,7 @@ textarea {
   right: 0;
   height: 125%;
   width: 100%;
-  background: rgba($color: $color-grey-dark, $alpha: .9);
+  background: rgba($color: $color-grey-dark, $alpha: .85);
   will-change: opacity;
 }
 
