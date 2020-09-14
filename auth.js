@@ -77,7 +77,14 @@ loginForm.addEventListener('submit', (e) => {
 const logout = document.querySelector('#logout');
 logout.addEventListener('click', (e) => {
     e.preventDefault();
-    auth.signOut();
+    // log the user out then display the logout message modal
+    auth.signOut().then(() => {
+        const modalElement = document.getElementById('modal-logout');
+        modalOverlayElement = `<div class="modal-overlay"></div>`;
+        modalElement.insertAdjacentHTML('afterend', modalOverlayElement);
+        modalElement.classList.toggle('open');
+        modalElement.classList.add('modal-fade-in');
+    });
 });
 
 // hide/show UI elements depending on user state
