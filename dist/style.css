@@ -631,6 +631,57 @@ textarea.is-success:active {
     .card__action a, .card__action .button, .card__action button {
       margin: 0; }
 
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 99999;
+  left: 0;
+  right: 0;
+  background-color: #eee;
+  padding: 2rem;
+  max-height: 70%;
+  width: 55%;
+  margin: auto;
+  overflow-y: auto;
+  border-radius: 0.5rem;
+  will-change: transform, opacity; }
+  .modal.open {
+    display: block; }
+  .modal__close {
+    position: absolute;
+    top: .5rem;
+    right: 2rem;
+    color: #212121;
+    font-size: 2.4rem;
+    font-weight: 700; }
+  .modal__close:hover, .modal__close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer; }
+
+.modal-overlay {
+  position: fixed;
+  z-index: 9999;
+  top: -25%;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  height: 125%;
+  width: 100%;
+  background: rgba(33, 33, 33, 0.85);
+  will-change: opacity; }
+
+.modal-fade-in {
+  animation: modal-fade-in .3s ease-out; }
+
+@keyframes modal-fade-in {
+  0% {
+    opacity: 0;
+    transform: scale(0); }
+  100% {
+    opacity: 1;
+    transform: scale(1); } }
+
 blockquote {
   background: transparent;
   margin: 0 0 1.2rem 0;
@@ -823,6 +874,8 @@ kbd {
     height: 100%;
     display: flex;
     align-items: center; }
+  .navbar-basic__item {
+    width: initial; }
   .navbar-basic .navbar-basic__links,
   .navbar-basic.opened .navbar-basic__links {
     margin: 0;
@@ -1814,6 +1867,10 @@ body.dimmed {
   color: #eee;
   padding: 1.5rem; }
 
+.profile {
+  background: blue;
+  text-align: center; }
+
 .main {
   padding: 2.5rem 0; }
 
@@ -1889,3 +1946,12 @@ body.dimmed {
   background: #424242;
   color: #eee;
   padding: 1.5rem 0; }
+
+.grow-center {
+  animation: grow-center .5s ease-out; }
+
+@keyframes grow-center {
+  0% {
+    transform: scale(0); }
+  100% {
+    transform: scale(1); } }

@@ -14,6 +14,11 @@ $color-purple: purple;
   padding: 1.5rem;
 }
 
+.profile {
+  background: blue;
+  text-align: center;
+}
+
 .main {
   padding: 2.5rem 0;
 }
@@ -114,4 +119,18 @@ $color-purple: purple;
   background: $color-primary;
   color: $color-grey-light;
   padding: 1.5rem 0;
+}
+
+// Animations
+.grow-center {
+  animation: grow-center .5s ease-out;
+}
+
+@keyframes grow-center {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }
 }

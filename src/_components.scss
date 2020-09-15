@@ -331,6 +331,80 @@ textarea {
 }
 
 //===================================================
+// MODAL
+// <div id="{data-target}" class="modal">
+//     <div class="modal__content">
+//         <span class="modal__close">&times;</span>
+//          { MODAL CONTENT HERE }
+//     </div>
+// </div>
+//===================================================
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 99999;
+  left: 0;
+  right: 0;
+  background-color: $color-grey-light;
+  padding: 2rem;
+  max-height: 70%;
+  width: 55%;
+  margin: auto;
+  overflow-y: auto;
+  border-radius: $border-radius;
+  will-change: transform, opacity;
+
+  &.open {
+    display: block;
+  }
+
+  &__close {
+      position: absolute;
+      top: .5rem;
+      right: 2rem;
+      color: $color-grey-dark;
+      font-size: 2.4rem;
+      font-weight: 700;
+    }
+  
+    &__close:hover,
+    &__close:focus {
+      color: darken($color-grey-dark, 15%);
+      text-decoration: none;
+      cursor: pointer;
+    }
+}
+
+.modal-overlay {
+  position: fixed;
+  z-index: 9999;
+  top: -25%;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  height: 125%;
+  width: 100%;
+  background: rgba($color: $color-grey-dark, $alpha: .85);
+  will-change: opacity;
+}
+
+.modal-fade-in {
+  animation: modal-fade-in .3s ease-out;
+}
+
+@keyframes modal-fade-in {
+  0% {
+    opacity: 0;
+    transform: scale(0);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+//===================================================
 // BLOCKQUOTE
 //
 //     <blockquote>
