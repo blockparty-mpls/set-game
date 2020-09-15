@@ -2,7 +2,9 @@
 let chosenCards = [];
 let userScore = 0;
 const scoreboard = document.getElementById('scoreboard');
-const timer = document.getElementById('timer');
+const timerBox = document.getElementById('timer');
+let timeRemaining = 5;
+var gameboard = document.getElementById('gameboard');
 
 
 //make the deck 
@@ -42,16 +44,39 @@ getDeck();
 
 //Create a timer function
 function startTimer () {
-    if (!timeRemaining){
-        alert(`Game Over!`);
-        return
+    
+    if (timeRemaining === 0){
+        clearInterval(timer);
+        timerBox.innerText = `Time is up!`;
+        endGame();
     };
-    timer.innerText = timeRemaining;
+    
+    timerBox.innerText = timeRemaining;
     timeRemaining--;
-
 }
 
-setInterval(startTimer, 1000);
+var timer = setInterval(startTimer, 1000);
+
+var endGame = function() {
+    
+    //clear the cards from the board
+    gameboard.innerHTML = "";
+
+    //render a 'game over' message
+    gameboard.innerHTML = `<h2>Game Over!</h2>`;
+
+    //render a button which would allow the user to start a new game
+    var restartBtn = document.createElement('button');
+    restartBtn.innerText = 'Play Again?';
+    
+    restartBtn.addEventListener('click', function(){
+        dealCards(dealtCards)
+    });
+    
+    console.log(restartBtn);
+    gameboard.appendChild(restartBtn);
+}
+
 
 //The function below will shuffle the deck
 /**
@@ -117,8 +142,13 @@ function dealCards(cards) {
         html += newCard;
         scoreboard.innerHTML = userScore;
     }); 
+    
+    //clear the instructions
+    document.getElementById(`rules`).remove();
+
     // add all dealt cards to the dom
-    document.getElementById('gameboard').insertAdjacentHTML('beforeend', html);
+    gameboard.insertAdjacentHTML('beforeend', html);
+
     // remove the animation class from card divs
     document.querySelectorAll('.game-card').forEach(card => {
         card.addEventListener('transitionend', (e) => {
@@ -162,9 +192,6 @@ var clickHandler = function (event) {
 
 // create new variable for the dealt cards at start of game
 let dealtCards = deal(12);
-
-// use dealt cards variable in deal cards function
-dealCards(dealtCards);
 
 // ==========================================
 // GAME LOGIC
@@ -302,3 +329,7 @@ var replaceCards = function () {
 }
 
 document.addEventListener('click', clickHandler, false);
+
+document.querySelector(`#start-game`).addEventListener('click', function(){
+    dealCards(dealtCards);
+});
