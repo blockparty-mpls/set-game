@@ -3,8 +3,9 @@ let chosenCards = [];
 let userScore = 0;
 const scoreboard = document.getElementById('scoreboard');
 const timerBox = document.getElementById('timer');
-let timeRemaining = 5;
+let timeRemaining = 60;
 var gameboard = document.getElementById('gameboard');
+var timer;
 
 
 //make the deck 
@@ -46,16 +47,18 @@ getDeck();
 function startTimer () {
     
     if (timeRemaining === 0){
+        console.log("Time's up!");
         clearInterval(timer);
         timerBox.innerText = `Time is up!`;
         endGame();
+        return
     };
     
     timerBox.innerText = timeRemaining;
     timeRemaining--;
 }
 
-var timer = setInterval(startTimer, 1000);
+// var timer = setInterval(startTimer, 1000);
 
 var endGame = function() {
     
@@ -70,7 +73,7 @@ var endGame = function() {
     restartBtn.innerText = 'Play Again?';
     
     restartBtn.addEventListener('click', function(){
-        dealCards(dealtCards)
+        startGame();
     });
     
     console.log(restartBtn);
@@ -108,20 +111,25 @@ var shuffle = function(array) {
 
 deck = shuffle(deck);
 
-// write a function that initially deals the cards
-function deal(cardNumber){
-    // grab the number of cards from the deck
-    var cards = deck.slice(0, cardNumber);
-    deck.splice(0, cardNumber);
-    return cards;
-};
+// // write a function that initially deals the cards
+// function deal(cardNumber){
+//     // grab the number of cards from the deck
+//     var cards = deck.slice(0, cardNumber);
+//     deck.splice(0, cardNumber);
+//     return cards;
+// };
 
 // Function to display the dealt cards in the UI
-function dealCards(cards) {
+function deal(cards) {
+
+    // grab the number of cards from the deck
+    var dealt = deck.slice(0, cards);
+    deck.splice(0, cards);
+
     // empty html string to concatenate before appending to dom
     let html = '';
     // loop through the number of the 'cards' argument
-    cards.forEach((card, i) => {
+    dealt.forEach((card, i) => {
         // create empty variable for shapes
         let shapes = '';
         // determine how many divs to nest within this new div element based on the 'num' property of each card
@@ -142,9 +150,6 @@ function dealCards(cards) {
         html += newCard;
         scoreboard.innerHTML = userScore;
     }); 
-    
-    //clear the instructions
-    document.getElementById(`rules`).remove();
 
     // add all dealt cards to the dom
     gameboard.insertAdjacentHTML('beforeend', html);
@@ -156,12 +161,13 @@ function dealCards(cards) {
         })
     });
 
-}
+};
+
 
 // create the function to handle clicks on the cards
 var clickHandler = function (event) {
     
-    //check if clicked element or its parent has a [data-monster-id] attribute, if not do nothing
+    //check if clicked element or its parent has a class of 'game-card'; escape the function if not
     var card = event.target.closest('.game-card');
     if(!card) {
         return;
@@ -190,8 +196,8 @@ var clickHandler = function (event) {
     }
 };
 
-// create new variable for the dealt cards at start of game
-let dealtCards = deal(12);
+// // create new variable for the dealt cards at start of game
+// let dealtCards = deal(12);
 
 // ==========================================
 // GAME LOGIC
@@ -205,7 +211,7 @@ let dealtCards = deal(12);
  */
 
 var checkSet = function(selected) {
-    console.log(selected);
+    // console.log(selected);
     //create four nested functions, one for each of the properties that you need to compare
     var checkColor = function(){
         if (selected[0].color === selected[1].color && selected[0].color === selected[2].color && selected[1].color === selected[2].color){
@@ -252,41 +258,50 @@ var checkSet = function(selected) {
     if (color === true && number === true && shape === true && clarity === true){
         console.log("You found a set!");
         userScore ++;
+        timeRemaining += 6;
         scoreboard.innerHTML = userScore;
-        if (deck.length) {
+        if (deck.length > 0) {
             console.log(deck);
             replaceCards(); 
         }
         
     } else {
         console.log(deck);
-        if (deck.length) {
-            replaceCards();
-        }
 
         // TODO: this is for testing without getting a 'set' - need to replace with commented out code
         //return;
 
         // use a timeout for UI purposes
-        // setTimeout(() => {
-        // chosenCards.forEach(card => {
-        //     chosenCards = [];
-        //     // get the current ID for each chosen card
-        //     cardId = card.id;
-        //     // create reference for that element in the dom to which append the new data and shape divs
-        //     cardEl = document.querySelector(`[data-id=${CSS.escape(cardId)}]`);
-        //         // remove the clicked class box shadow styles
-        //         cardEl.classList.remove('clicked');
-        //     });
-        // }, 200);
+        setTimeout(() => {
+        chosenCards.forEach(card => {
+            chosenCards = [];
+            // get the current ID for each chosen card
+            cardId = card.id;
+            // create reference for that element in the dom to which append the new data and shape divs
+            cardEl = document.querySelector(`[data-id=${CSS.escape(cardId)}]`);
+                // remove the clicked class box shadow styles
+                cardEl.classList.remove('clicked');
+            });
+        }, 200);
     };
 };
 
 
 var replaceCards = function () {
-    // create variable for the array of replacemlent cards
-    let replacementCards= deal(3);
-    console.log('replacementCards cards: ', replacementCards)
+    // create variable for the array of replacement cards
+    console.log(deck);
+    // if (deck.length < 3) {
+    //     let replacementCards = deck.slice(0, deck.length);
+    //     deck.splice(0, deck.length);
+    // } else {
+    //     let replacementCards = deck.slice(0, 3);
+    //     deck.splice(0, 3);
+    //     console.log('replacementCards cards: ', replacementCards)
+    // }
+
+    let replacementCards = deck.slice(0, 3);
+        deck.splice(0, 3);
+        console.log('replacementCards cards: ', replacementCards)
 
     // use a timeout for UI purposes 
     setTimeout(() => {
@@ -328,8 +343,28 @@ var replaceCards = function () {
 
 }
 
+/*
+Here, I added a function to start the game when the user clicks on the button on the landing screen. 
+I also combined the 'deal' function with the 'dealCards' function...now there's only one function called 'deal' which accepts a number
+as an argument for the number of cards that you want to deal. The startGame function will also start the timer. 
+*/
+function startGame() {
+    //clear the instructions
+    gameboard.innerHTML = ``;
+    //empty the deck array
+    deck = [];
+    //generate a new deck
+    getDeck();
+    //shuffle the deck
+    shuffle(deck);
+
+    //start the timer
+    timer = setInterval(startTimer, 1000);
+
+    //deal 12 cards
+    deal(12);
+};
+
 document.addEventListener('click', clickHandler, false);
 
-document.querySelector(`#start-game`).addEventListener('click', function(){
-    dealCards(dealtCards);
-});
+document.querySelector(`#start-game`).addEventListener('click', startGame);
