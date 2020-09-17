@@ -3,7 +3,7 @@ let chosenCards = [];
 let userScore = 0;
 const scoreboard = document.getElementById('scoreboard');
 const timerBox = document.getElementById('timer');
-let timeRemaining = 60;
+let timeRemaining = 1000;
 var gameboard = document.getElementById('gameboard');
 var timer;
 
@@ -260,29 +260,33 @@ var checkSet = function(selected) {
         userScore ++;
         timeRemaining += 6;
         scoreboard.innerHTML = userScore;
+        
+        if (deck.length > 0) {
+            console.log(deck);
+            replaceCards(); 
+        } 
+    } else {
+        console.log(deck);
         if (deck.length > 0) {
             console.log(deck);
             replaceCards(); 
         }
-        
-    } else {
-        console.log(deck);
 
         // TODO: this is for testing without getting a 'set' - need to replace with commented out code
         //return;
 
         // use a timeout for UI purposes
-        setTimeout(() => {
-        chosenCards.forEach(card => {
-            chosenCards = [];
-            // get the current ID for each chosen card
-            cardId = card.id;
-            // create reference for that element in the dom to which append the new data and shape divs
-            cardEl = document.querySelector(`[data-id=${CSS.escape(cardId)}]`);
-                // remove the clicked class box shadow styles
-                cardEl.classList.remove('clicked');
-            });
-        }, 200);
+        // setTimeout(() => {
+        // chosenCards.forEach(card => {
+        //     chosenCards = [];
+        //     // get the current ID for each chosen card
+        //     cardId = card.id;
+        //     // create reference for that element in the dom to which append the new data and shape divs
+        //     cardEl = document.querySelector(`[data-id=${CSS.escape(cardId)}]`);
+        //         // remove the clicked class box shadow styles
+        //         cardEl.classList.remove('clicked');
+            // });
+    //     }, 200);
     };
 };
 
