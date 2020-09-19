@@ -3,7 +3,7 @@ let chosenCards = [];
 let userScore = 0;
 const scoreboard = document.getElementById('scoreboard');
 const timerBox = document.getElementById('timer');
-let timeRemaining = 1000;
+let timeRemaining = 60;
 var gameboard = document.getElementById('gameboard');
 var timer;
 
@@ -361,6 +361,8 @@ function startGame() {
     getDeck();
     //shuffle the deck
     shuffle(deck);
+    //refill the timer
+    timeRemaining = 60;
 
     //start the timer
     timer = setInterval(startTimer, 1000);
