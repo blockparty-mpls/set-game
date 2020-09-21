@@ -1871,7 +1871,12 @@ body.dimmed {
   background: blue;
   text-align: center; }
 
+#game-details {
+  display: none; }
+
 .main {
+  display: flex;
+  height: calc(100vh - 11.5rem);
   padding: 2.5rem 0; }
 
 .game-card {

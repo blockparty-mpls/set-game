@@ -82,7 +82,7 @@ logout.addEventListener('click', (e) => {
     // log the user out then display the logout message modal and exit game if playing
     if(isPlayingGame) {
         if(confirm('Do you want to exit the game?')) {
-            endGame();
+            showHomeScreen();
             auth.signOut().then(() => {
                 modalElement.insertAdjacentHTML('afterend', modalOverlayElement);
                 modalElement.classList.toggle('open');

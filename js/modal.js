@@ -22,7 +22,8 @@ modalClicks.forEach(modal => {
         // exit game if user wants to sign in/sign up
         if(isPlayingGame) {
             if(confirm('Do you want to exit the game?')) {
-                endGame();
+                showHomeScreen();
+                // endGame();
                 modalElement.insertAdjacentHTML('afterend', modalOverlayElement);
                 modalElement.classList.toggle('open');
                 modalElement.classList.add('modal-fade-in');
