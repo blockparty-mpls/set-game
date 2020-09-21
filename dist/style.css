@@ -1871,6 +1871,14 @@ body.dimmed {
   background: blue;
   text-align: center; }
 
+.leaderboard {
+  list-style: none; }
+  .leaderboard li {
+    padding: 2rem 1rem; }
+  .leaderboard li:nth-child(odd) {
+    background-color: #212121;
+    color: #eee; }
+
 #game-details {
   display: none; }
 
