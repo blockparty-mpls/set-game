@@ -77,14 +77,27 @@ loginForm.addEventListener('submit', (e) => {
 const logout = document.querySelector('#logout');
 logout.addEventListener('click', (e) => {
     e.preventDefault();
-    // log the user out then display the logout message modal
-    auth.signOut().then(() => {
-        const modalElement = document.getElementById('modal-logout');
-        modalOverlayElement = `<div class="modal-overlay"></div>`;
-        modalElement.insertAdjacentHTML('afterend', modalOverlayElement);
-        modalElement.classList.toggle('open');
-        modalElement.classList.add('modal-fade-in');
-    });
+    const modalElement = document.getElementById('modal-logout');
+    modalOverlayElement = `<div class="modal-overlay"></div>`;
+    // log the user out then display the logout message modal and exit game if playing
+    if(isPlayingGame) {
+        if(confirm('Do you want to exit the game?')) {
+            endGame();
+            auth.signOut().then(() => {
+                modalElement.insertAdjacentHTML('afterend', modalOverlayElement);
+                modalElement.classList.toggle('open');
+                modalElement.classList.add('modal-fade-in');
+            });
+        } else {
+            console.log('still playing the game');
+        }
+    } else {
+        auth.signOut().then(() => {
+            modalElement.insertAdjacentHTML('afterend', modalOverlayElement);
+            modalElement.classList.toggle('open');
+            modalElement.classList.add('modal-fade-in');
+        });
+    }
 });
 
 // hide/show UI elements depending on user state

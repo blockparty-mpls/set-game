@@ -6,6 +6,7 @@ const timerBox = document.getElementById('timer');
 let timeRemaining = 60;
 var gameboard = document.getElementById('gameboard');
 var timer;
+var isPlayingGame = false;
 
 
 //make the deck 
@@ -61,6 +62,12 @@ function startTimer () {
 // var timer = setInterval(startTimer, 1000);
 
 var endGame = function() {
+
+    // update game status
+    isPlayingGame = false;
+
+    // reset the timer
+    timeRemaining = 0;
     
     //clear the cards from the board
     gameboard.innerHTML = "";
@@ -196,9 +203,6 @@ var clickHandler = function (event) {
     }
 };
 
-// // create new variable for the dealt cards at start of game
-// let dealtCards = deal(12);
-
 // ==========================================
 // GAME LOGIC
 // ==========================================
@@ -267,26 +271,26 @@ var checkSet = function(selected) {
         } 
     } else {
         console.log(deck);
-        if (deck.length > 0) {
-            console.log(deck);
-            replaceCards(); 
-        }
+        // if (deck.length > 0) {
+        //     console.log(deck);
+        //     replaceCards(); 
+        // }
 
         // TODO: this is for testing without getting a 'set' - need to replace with commented out code
         //return;
 
         // use a timeout for UI purposes
-        // setTimeout(() => {
-        // chosenCards.forEach(card => {
-        //     chosenCards = [];
-        //     // get the current ID for each chosen card
-        //     cardId = card.id;
-        //     // create reference for that element in the dom to which append the new data and shape divs
-        //     cardEl = document.querySelector(`[data-id=${CSS.escape(cardId)}]`);
-        //         // remove the clicked class box shadow styles
-        //         cardEl.classList.remove('clicked');
-            // });
-    //     }, 200);
+        setTimeout(() => {
+        chosenCards.forEach(card => {
+            chosenCards = [];
+            // get the current ID for each chosen card
+            cardId = card.id;
+            // create reference for that element in the dom to which append the new data and shape divs
+            cardEl = document.querySelector(`[data-id=${CSS.escape(cardId)}]`);
+                // remove the clicked class box shadow styles
+                cardEl.classList.remove('clicked');
+            });
+        }, 200);
     };
 };
 
@@ -353,6 +357,9 @@ I also combined the 'deal' function with the 'dealCards' function...now there's 
 as an argument for the number of cards that you want to deal. The startGame function will also start the timer. 
 */
 function startGame() {
+
+    // update the game status
+    isPlayingGame = true;
     //clear the instructions
     gameboard.innerHTML = ``;
     //empty the deck array
