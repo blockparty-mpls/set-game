@@ -89,7 +89,12 @@ var endGame = function() {
     gameboard.innerHTML = "";
 
     //render a 'game over' message
-    gameboard.innerHTML = `<div id="game-over" class="text-center margin-auto"><h2>Game Over!</h2></div>`;
+    gameboard.innerHTML = `
+        <div id="game-over" class="text-center margin-auto">
+            <h2>Game Over!</h2>
+            <p>${auth.currentUser ? auth.currentUser.displayName : 'anonymous'} - Score: ${userScore}</p>
+        </div>
+    `;
 
     //render a button which would allow the user to start a new game
     var restartBtn = document.createElement('button');
