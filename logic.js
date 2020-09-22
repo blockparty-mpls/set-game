@@ -63,6 +63,7 @@ function startTimer () {
 
 var endGame = function() {
 
+    // if there is a user, add their scores etc to the db
     if(auth.currentUser) {
         db.collection('userScores').add({
             user: auth.currentUser.displayName,
@@ -103,8 +104,7 @@ var endGame = function() {
     restartBtn.addEventListener('click', function(){
         startGame();
     });
-    
-    console.log(restartBtn);
+    // append the button to the dynamic html created above
     document.getElementById('game-over').appendChild(restartBtn);
 }
 
@@ -450,17 +450,14 @@ function showHomeScreen() {
     startBtn.addEventListener('click', function(){
         startGame();
     });
-    
+    // append the button to the dynamic html created above
     document.getElementById('rules').appendChild(startBtn);
 }
 
 // add click handler to document for card clicks
 document.addEventListener('click', clickHandler, false);
 
-// dynamically show the start screen on page load
-showHomeScreen();
-
-// real-time db listener
+// real-time db listener for changes
 db.collection('userScores').orderBy("score", "desc").limit(3).onSnapshot(snapshot => {
     playerScores.innerHTML = '';
     snapshot.forEach(item => {
@@ -479,3 +476,6 @@ function renderLeaderboard(doc) {
     `;
     playerScores.innerHTML += newRow;
 }
+
+// dynamically show the start screen on page load
+showHomeScreen();
