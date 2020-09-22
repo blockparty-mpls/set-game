@@ -6,6 +6,7 @@ const timerBox = document.getElementById('timer');
 let timeRemaining = 60;
 const gameboard = document.getElementById('gameboard');
 const gameDetails = document.getElementById('game-details');
+const playerScores = document.getElementById('player-scores');
 var timer;
 let isPlayingGame = false;
 
@@ -62,17 +63,39 @@ function startTimer () {
 
 var endGame = function() {
 
+    // if there is a user, add their scores etc to the db
+    if(auth.currentUser) {
+        db.collection('userScores').add({
+            user: auth.currentUser.displayName,
+            score: userScore,
+            createdAt: new Date()
+        });
+    } else {
+        console.log('not logged in');
+    }
+
     // update game status
     isPlayingGame = false;
 
     // reset the timer
     timeRemaining = 0;
+
+    // clear the timer display
+    timerBox.innerText = '';
+
+    // hide the game details over cards
+    gameDetails.style.display = 'none';
     
     //clear the cards from the board
     gameboard.innerHTML = "";
 
     //render a 'game over' message
-    gameboard.innerHTML = `<div id="game-over"><h2>Game Over!</h2></div>`;
+    gameboard.innerHTML = `
+        <div id="game-over" class="text-center margin-auto">
+            <h2>Game Over!</h2>
+            <p>${auth.currentUser ? auth.currentUser.displayName : 'anonymous'} - Score: ${userScore}</p>
+        </div>
+    `;
 
     //render a button which would allow the user to start a new game
     var restartBtn = document.createElement('button');
@@ -81,8 +104,7 @@ var endGame = function() {
     restartBtn.addEventListener('click', function(){
         startGame();
     });
-    
-    console.log(restartBtn);
+    // append the button to the dynamic html created above
     document.getElementById('game-over').appendChild(restartBtn);
 }
 
@@ -350,6 +372,8 @@ function startGame() {
     isPlayingGame = true;
     //clear the instructions
     gameboard.innerHTML = ``;
+    // set user score to 0
+    userScore = 0;
     //empty the deck array
     deck = [];
     //generate a new deck
@@ -357,7 +381,7 @@ function startGame() {
     //shuffle the deck
     shuffle(deck);
     //refill the timer
-    timeRemaining = 15;
+    timeRemaining = 60;
 
     //start the timer
     timer = setInterval(startTimer, 1000);
@@ -438,12 +462,32 @@ function showHomeScreen() {
     startBtn.addEventListener('click', function(){
         startGame();
     });
-    
+    // append the button to the dynamic html created above
     document.getElementById('rules').appendChild(startBtn);
 }
 
 // add click handler to document for card clicks
 document.addEventListener('click', clickHandler, false);
+
+// real-time db listener for changes
+db.collection('userScores').orderBy("score", "desc").limit(3).onSnapshot(snapshot => {
+    playerScores.innerHTML = '';
+    snapshot.forEach(item => {
+        console.log(item.data());
+        renderLeaderboard(item);
+    });
+});
+
+// render the top player names and scores in the leaderboard modal
+function renderLeaderboard(doc) {
+    let newRow = `
+        <tr>
+            <td>${doc.data().user}</td>
+            <td>${doc.data().score}</td>
+        </tr>
+    `;
+    playerScores.innerHTML += newRow;
+}
 
 // dynamically show the start screen on page load
 showHomeScreen();

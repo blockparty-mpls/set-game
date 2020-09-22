@@ -84,20 +84,23 @@
         <div class="modal__content">
             <span class="modal__close">&times;</span>
             <h3>Leaderboard</h3>
-            <ul class="leaderboard">
-                <li>player: name - score: 1</li>
-                <li>player: name - score: 1</li>
-                <li>player: name - score: 1</li>
-                <li>player: name - score: 1</li>
-            </ul>
+            <table class="striped-table">
+                <thead>
+                  <tr>
+                    <th>Player</th>
+                    <th>Score</th>
+                  </tr>
+                </thead>
+                <tbody id="player-scores"></tbody>
+              </table>
         </div>
     </div>
 
     <main class="main">
         <div class="container">
             <div id="game-details" class="row justify-content-center">
-                <p class="margin-bottom-zero">Time remaining: <span id="timer"></span></p>
                 <p class="margin-bottom-zero">User Score: <span id="scoreboard"></span></p>
+                <p class="margin-bottom-zero">Time remaining: <span id="timer"></span></p>
             </div>
             <div id="gameboard" class="row"></div>
         </div>

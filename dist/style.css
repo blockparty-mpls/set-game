@@ -635,6 +635,7 @@ textarea.is-success:active {
   display: none;
   position: fixed;
   z-index: 99999;
+  top: 10%;
   left: 0;
   right: 0;
   background-color: #eee;
@@ -681,6 +682,44 @@ textarea.is-success:active {
   100% {
     opacity: 1;
     transform: scale(1); } }
+
+/**
+ * Tables
+ */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+  max-width: 100%; }
+
+thead th {
+  border-bottom: 2px solid #212121; }
+
+tfoot th {
+  border-top: 2px solid #212121; }
+
+td {
+  border-bottom: 1px solid #212121; }
+
+th,
+td {
+  text-align: left;
+  padding: 0.5rem; }
+
+caption {
+  padding: 1.5rem 0;
+  caption-side: bottom;
+  color: #212121; }
+
+.striped-table tbody tr:nth-child(odd) {
+  background-color: #757575; }
+
+.contain-table {
+  overflow-x: auto; }
+
+@media only screen and (min-width: 850px) {
+  .contain-table {
+    width: 100%; } }
 
 blockquote {
   background: transparent;
@@ -1862,6 +1901,19 @@ body.dimmed {
 * THEME SPECIFIC COMPONENTS
 *
 */
+html, body {
+  height: 100%; }
+
+body {
+  display: flex;
+  flex-direction: column; }
+
+.main {
+  flex: 1 0 auto; }
+
+.footer {
+  flex-shrink: 0; }
+
 .header {
   background: #424242;
   color: #eee;
@@ -1871,20 +1923,13 @@ body.dimmed {
   background: blue;
   text-align: center; }
 
-.leaderboard {
-  list-style: none; }
-  .leaderboard li {
-    padding: 2rem 1rem; }
-  .leaderboard li:nth-child(odd) {
-    background-color: #212121;
-    color: #eee; }
-
 #game-details {
   display: none; }
+  #game-details span {
+    display: inline-block;
+    min-width: 2.5rem; }
 
 .main {
-  display: flex;
-  height: calc(100vh - 11.5rem);
   padding: 2.5rem 0; }
 
 .game-card {
