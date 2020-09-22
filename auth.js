@@ -14,6 +14,7 @@ auth.onAuthStateChanged(user => {
 const loggedOutLinks = document.querySelectorAll('.logged-out');
 const loggedInLinks = document.querySelectorAll('.logged-in');
 const profileLink = document.getElementById('profile');
+const profileContent = document.getElementById('profile-content');
 
 // signup
 const signupForm = document.querySelector('#signup-form');
@@ -109,9 +110,18 @@ const setupUI = (user) => {
         // display username in nav
         profileLink.style.display = 'block';
         profileLink.innerText = user.displayName;
+        // add user info to the profile modal
+        profileContent.innerHTML = `
+            <div class="text-center">
+                <h4>${auth.currentUser.displayName}</h4>
+                <p>${auth.currentUser.email}</p>
+            </div>
+        `;
     } else {
         // toggle UI elements
         loggedInLinks.forEach(item => item.style.display = 'none');
         loggedOutLinks.forEach(item => item.style.display = 'block');
+        // clear the user profile info
+        profileContent.innerHTML = '';
     }
 }

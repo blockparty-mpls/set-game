@@ -6,6 +6,7 @@ const timerBox = document.getElementById('timer');
 let timeRemaining = 60;
 const gameboard = document.getElementById('gameboard');
 const gameDetails = document.getElementById('game-details');
+const checkSetMessage = document.getElementById('check-set');
 const playerScores = document.getElementById('player-scores');
 var timer;
 let isPlayingGame = false;
@@ -271,6 +272,7 @@ var checkSet = function(selected) {
 
     if (color === true && number === true && shape === true && clarity === true){
         console.log("You found a set!");
+        checkSetMessage.innerText = 'You found a set!';
         userScore ++;
         timeRemaining += 6;
         scoreboard.innerHTML = userScore;
@@ -281,6 +283,9 @@ var checkSet = function(selected) {
         } 
     } else {
         console.log(deck);
+
+        checkSetMessage.innerText = 'That is not a set.'
+
         // if (deck.length > 0) {
         //     console.log(deck);
         //     replaceCards(); 
@@ -469,7 +474,7 @@ function showHomeScreen() {
 // add click handler to document for card clicks
 document.addEventListener('click', clickHandler, false);
 
-// real-time db listener for changes
+// real-time db listener for changes - get top user scores from collection
 db.collection('userScores').orderBy("score", "desc").limit(3).onSnapshot(snapshot => {
     playerScores.innerHTML = '';
     snapshot.forEach(item => {

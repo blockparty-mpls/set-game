@@ -1924,10 +1924,15 @@ body {
   text-align: center; }
 
 #game-details {
-  display: none; }
+  display: none;
+  margin-bottom: 2.5rem; }
   #game-details span {
     display: inline-block;
     min-width: 2.5rem; }
+
+.check-set {
+  height: 2.5rem;
+  margin-top: 1.5rem; }
 
 .main {
   padding: 2.5rem 0; }
