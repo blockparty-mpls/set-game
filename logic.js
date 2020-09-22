@@ -78,12 +78,18 @@ var endGame = function() {
 
     // reset the timer
     timeRemaining = 0;
+
+    // clear the timer display
+    timerBox.innerText = '';
+
+    // hide the game details over cards
+    gameDetails.style.display = 'none';
     
     //clear the cards from the board
     gameboard.innerHTML = "";
 
     //render a 'game over' message
-    gameboard.innerHTML = `<div id="game-over"><h2>Game Over!</h2></div>`;
+    gameboard.innerHTML = `<div id="game-over" class="text-center margin-auto"><h2>Game Over!</h2></div>`;
 
     //render a button which would allow the user to start a new game
     var restartBtn = document.createElement('button');
@@ -370,7 +376,7 @@ function startGame() {
     //shuffle the deck
     shuffle(deck);
     //refill the timer
-    timeRemaining = 15;
+    timeRemaining = 5;
 
     //start the timer
     timer = setInterval(startTimer, 1000);
@@ -449,7 +455,7 @@ document.addEventListener('click', clickHandler, false);
 // dynamically show the start screen on page load
 showHomeScreen();
 
-// real-time listener
+// real-time db listener
 db.collection('userScores').orderBy("score", "desc").limit(3).onSnapshot(snapshot => {
     playerScores.innerHTML = '';
     snapshot.forEach(item => {
