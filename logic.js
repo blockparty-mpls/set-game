@@ -422,10 +422,10 @@ function showHomeScreen() {
             </div>
             <p>The example above would be a valid set because...</p>
             <ul>
-                <li>...the shapes are all identical (each card is a diamond)</li>
-                <li>...the numbers are all unique (1, 2, and 3)</li>
-                <li>...the shades are all unique (transparent, shaded, and opaque)</li>
-                <li>...the colors are all unique (red, green, and purple)</li>
+                <li>...the <strong>shapes</strong> are all <strong>identical</strong> (each card is a diamond)</li>
+                <li>...the <strong>numbers</strong> are all <strong>unique</strong> (1, 2, and 3)</li>
+                <li>...the <strong>shades</strong> are all <strong>unique</strong> (transparent, shaded, and opaque)</li>
+                <li>...the <strong>colors</strong>colors are all <strong>unique</strong> (red, green, and purple)</li>
             </ul>
             <p>Again, as long as each trait is either totally identical or totally unique across the three cards that you pick, you've got a set!</p>
         </div>
