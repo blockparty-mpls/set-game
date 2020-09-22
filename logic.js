@@ -6,6 +6,7 @@ const timerBox = document.getElementById('timer');
 let timeRemaining = 60;
 const gameboard = document.getElementById('gameboard');
 const gameDetails = document.getElementById('game-details');
+const playerScores = document.getElementById('player-scores');
 var timer;
 let isPlayingGame = false;
 
@@ -61,6 +62,16 @@ function startTimer () {
 }
 
 var endGame = function() {
+
+    if(auth.currentUser) {
+        db.collection('userScores').add({
+            user: auth.currentUser.displayName,
+            score: userScore,
+            createdAt: new Date()
+        });
+    } else {
+        console.log('not logged in');
+    }
 
     // update game status
     isPlayingGame = false;
@@ -350,6 +361,8 @@ function startGame() {
     isPlayingGame = true;
     //clear the instructions
     gameboard.innerHTML = ``;
+    // set user score to 0
+    userScore = 0;
     //empty the deck array
     deck = [];
     //generate a new deck
@@ -435,3 +448,23 @@ document.addEventListener('click', clickHandler, false);
 
 // dynamically show the start screen on page load
 showHomeScreen();
+
+// real-time listener
+db.collection('userScores').orderBy("score", "desc").limit(3).onSnapshot(snapshot => {
+    playerScores.innerHTML = '';
+    snapshot.forEach(item => {
+        console.log(item.data());
+        renderLeaderboard(item);
+    });
+});
+
+// render the top player names and scores in the leaderboard modal
+function renderLeaderboard(doc) {
+    let newRow = `
+        <tr>
+            <td>${doc.data().user}</td>
+            <td>${doc.data().score}</td>
+        </tr>
+    `;
+    playerScores.innerHTML += newRow;
+}
