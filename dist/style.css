@@ -902,7 +902,7 @@ kbd {
   padding: 1rem;
   max-height: none; }
 
-@media screen and (min-width: 992px) {
+@media screen and (min-width: 1170px) {
   .navbar-basic__toggle {
     display: none; }
   .navbar-basic .navbar-basic__menu,
@@ -1168,7 +1168,7 @@ body.dimmed {
   margin-left: auto; }
 
 .container-lg {
-  max-width: calc(992px * 0.95);
+  max-width: calc(1170px * 0.95);
   width: 100%;
   padding-right: 0.5rem;
   padding-left: 0.5rem;
@@ -1183,9 +1183,9 @@ body.dimmed {
   .container {
     max-width: calc(850px * 0.95); } }
 
-@media only screen and (min-width: 992px) {
+@media only screen and (min-width: 1170px) {
   .container {
-    max-width: calc(992px * 0.95); } }
+    max-width: calc(1170px * 0.95); } }
 
 @media only screen and (min-width: 1200px) {
   .container {
@@ -1572,7 +1572,7 @@ body.dimmed {
     flex: 0 0 8.33333%;
     max-width: 8.33333%; } }
 
-@media only screen and (min-width: 992px) {
+@media only screen and (min-width: 1170px) {
   .col-lg {
     -ms-flex-preferred-size: 0;
     flex-basis: 0;
@@ -1878,7 +1878,7 @@ body.dimmed {
   .justify-content-med-around {
     justify-content: space-around; } }
 
-@media only screen and (min-width: 992px) {
+@media only screen and (min-width: 1170px) {
   .pad-lg-0 {
     padding-right: 0;
     padding-left: 0; }
@@ -1923,6 +1923,9 @@ body {
   background: blue;
   text-align: center; }
 
+.example-list {
+  list-style: none; }
+
 #game-details {
   display: none;
   margin-bottom: 2.5rem; }
@@ -1949,6 +1952,8 @@ body {
   box-shadow: 0 2px 5px #212121;
   cursor: pointer;
   transition: transform .2s ease-out; }
+  .game-card__example {
+    pointer-events: none; }
 
 .clicked {
   box-shadow: 0 0 10px 5px blue; }

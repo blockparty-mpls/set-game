@@ -405,6 +405,9 @@ function showHomeScreen() {
 
     // reset the timer
     timeRemaining = 0;
+
+    // hide the game details over cards
+    gameDetails.style.display = 'none';
     
     //clear the cards from the board
     gameboard.innerHTML = "";
@@ -427,20 +430,20 @@ function showHomeScreen() {
             <div class="container">
                 <div class="row">
                     <div class="col-lg-3 col-med-4">
-                        <div class="game-card grow-center" data-id="4" data-color="green" data-num="3"
+                        <div class="game-card game-card__example grow-center" data-id="4" data-color="green" data-num="3"
                             data-shape="diamond" data-clarity="transparent">
                             <div class="red diamond transparent"></div>
                         </div>
                     </div>
                     <div class="col-lg-3 col-med-4">
-                        <div class="game-card grow-center" data-id="4" data-color="green" data-num="3"
+                        <div class="game-card game-card__example grow-center" data-id="4" data-color="green" data-num="3"
                         data-shape="diamond" data-clarity="transparent">
                             <div class="green diamond shaded"></div>
                             <div class="green diamond shaded"></div>
                         </div>
                     </div>
                     <div class="col-lg-3 col-med-4">
-                        <div class="game-card grow-center" data-id="4" data-color="green" data-num="3"
+                        <div class="game-card game-card__example grow-center" data-id="4" data-color="green" data-num="3"
                         data-shape="diamond" data-clarity="transparent">
                             <div class="purple diamond opaque"></div>
                             <div class="purple diamond opaque"></div>
@@ -450,7 +453,7 @@ function showHomeScreen() {
                 </div>
             </div>
             <p>The example above would be a valid set because...</p>
-            <ul>
+            <ul class="example-list">
                 <li>...the <strong>shapes</strong> are all <strong>identical</strong> (each card is a diamond)</li>
                 <li>...the <strong>numbers</strong> are all <strong>unique</strong> (1, 2, and 3)</li>
                 <li>...the <strong>shades</strong> are all <strong>unique</strong> (transparent, shaded, and opaque)</li>
@@ -475,7 +478,7 @@ function showHomeScreen() {
 document.addEventListener('click', clickHandler, false);
 
 // real-time db listener for changes - get top user scores from collection
-db.collection('userScores').orderBy("score", "desc").limit(3).onSnapshot(snapshot => {
+db.collection('userScores').orderBy("score", "desc").limit(5).onSnapshot(snapshot => {
     playerScores.innerHTML = '';
     snapshot.forEach(item => {
         console.log(item.data());
