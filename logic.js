@@ -400,22 +400,34 @@ function showHomeScreen() {
                     <div class="col-lg-3 col-med-4">
                         <div class="game-card grow-center" data-id="4" data-color="green" data-num="3"
                             data-shape="diamond" data-clarity="transparent">
-                            <div class="green diamond transparent"></div>
-                            <div class="green diamond transparent"></div>
-                            <div class="green diamond transparent"></div>
+                            <div class="red diamond transparent"></div>
                         </div>
                     </div>
                     <div class="col-lg-3 col-med-4">
                         <div class="game-card grow-center" data-id="4" data-color="green" data-num="3"
-                            data-shape="diamond" data-clarity="transparent"></div>
+                        data-shape="diamond" data-clarity="transparent">
+                            <div class="green diamond shaded"></div>
+                            <div class="green diamond shaded"></div>
+                        </div>
                     </div>
                     <div class="col-lg-3 col-med-4">
                         <div class="game-card grow-center" data-id="4" data-color="green" data-num="3"
-                            data-shape="diamond" data-clarity="transparent"></div>
+                        data-shape="diamond" data-clarity="transparent">
+                            <div class="purple diamond opaque"></div>
+                            <div class="purple diamond opaque"></div>
+                            <div class="purple diamond opaque"></div>
+                        </div>
                     </div>
                 </div>
             </div>
             <p>The example above would be a valid set because...</p>
+            <ul>
+                <li>...the <strong>shapes</strong> are all <strong>identical</strong> (each card is a diamond)</li>
+                <li>...the <strong>numbers</strong> are all <strong>unique</strong> (1, 2, and 3)</li>
+                <li>...the <strong>shades</strong> are all <strong>unique</strong> (transparent, shaded, and opaque)</li>
+                <li>...the <strong>colors</strong>colors are all <strong>unique</strong> (red, green, and purple)</li>
+            </ul>
+            <p>Again, as long as each trait is either totally identical or totally unique across the three cards that you pick, you've got a set!</p>
         </div>
     `;
 
