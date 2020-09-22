@@ -381,7 +381,7 @@ function startGame() {
     //shuffle the deck
     shuffle(deck);
     //refill the timer
-    timeRemaining = 5;
+    timeRemaining = 60;
 
     //start the timer
     timer = setInterval(startTimer, 1000);
