@@ -635,6 +635,7 @@ textarea.is-success:active {
   display: none;
   position: fixed;
   z-index: 99999;
+  top: 10%;
   left: 0;
   right: 0;
   background-color: #eee;
@@ -1900,6 +1901,19 @@ body.dimmed {
 * THEME SPECIFIC COMPONENTS
 *
 */
+html, body {
+  height: 100%; }
+
+body {
+  display: flex;
+  flex-direction: column; }
+
+.main {
+  flex: 1 0 auto; }
+
+.footer {
+  flex-shrink: 0; }
+
 .header {
   background: #424242;
   color: #eee;
@@ -1916,8 +1930,6 @@ body.dimmed {
     min-width: 2.5rem; }
 
 .main {
-  display: flex;
-  height: calc(100vh - 11.5rem);
   padding: 2.5rem 0; }
 
 .game-card {

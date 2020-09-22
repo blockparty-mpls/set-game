@@ -8,6 +8,23 @@ $color-red: red;
 $color-green: green;
 $color-purple: purple;
 
+// Sticky footer styles
+html, body {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+.main {
+  flex: 1 0 auto;
+}
+.footer {
+  flex-shrink: 0;
+}
+// End sticky footer styles
+
 .header {
   background: $color-primary;
   color: $color-grey-light;
@@ -29,8 +46,8 @@ $color-purple: purple;
 }
 
 .main {
-  display: flex;
-  height: calc(100vh - 11.5rem);
+  // display: flex;
+  // height: calc(100vh - 11.5rem);
   padding: 2.5rem 0;
 }
 
