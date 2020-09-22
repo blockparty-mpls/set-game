@@ -19,7 +19,26 @@ $color-purple: purple;
   text-align: center;
 }
 
+.leaderboard {
+  list-style: none;
+  
+  li {
+    padding: 2rem 1rem;
+  }
+
+  li:nth-child(odd) {
+    background-color: $color-grey-dark;
+    color: $color-grey-light;
+  }
+}
+
+#game-details {
+  display: none;
+}
+
 .main {
+  display: flex;
+  height: calc(100vh - 11.5rem);
   padding: 2.5rem 0;
 }
 

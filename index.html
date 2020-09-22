@@ -23,7 +23,7 @@
             </button>
             <div class="navbar-basic__menu">
                 <ul class="navbar-basic__links">
-                    <li class="navbar-basic__item"><a class="navbar-basic__link" href="#!">About</a></li>
+                    <li class="navbar-basic__item"><a class="navbar-basic__link modal-click" data-target="modal-leaderboard" href="#!">Leaderboard</a></li>
                     <li class="navbar-basic__item logged-out hide"><a class="navbar-basic__link modal-click"
                             data-target="modal-signup" href="#!">Sign Up</a></li>
                     <li class="navbar-basic__item logged-out hide"><a class="navbar-basic__link modal-click"
@@ -79,16 +79,27 @@
         </div>
     </div>
 
+    <!-- LEADERBOARD MODAL -->
+    <div id="modal-leaderboard" class="modal">
+        <div class="modal__content">
+            <span class="modal__close">&times;</span>
+            <h3>Leaderboard</h3>
+            <ul class="leaderboard">
+                <li>player: name - score: 1</li>
+                <li>player: name - score: 1</li>
+                <li>player: name - score: 1</li>
+                <li>player: name - score: 1</li>
+            </ul>
+        </div>
+    </div>
+
     <main class="main">
         <div class="container">
-            <div id="gameboard" class="row">
-                <div id="rules" class="col">
-                    <h1>Set - A Game of Logic</h1>
-                    <h2>Rules</h2>
-                    <h4>Find sets, yo! Here are some examples:</h4>
-                    <button id="start-game">Start the game!</button>
-                </div>
+            <div id="game-details" class="row justify-content-center">
+                <p class="margin-bottom-zero">Time remaining: <span id="timer"></span></p>
+                <p class="margin-bottom-zero">User Score: <span id="scoreboard"></span></p>
             </div>
+            <div id="gameboard" class="row"></div>
         </div>
     </main>
 
@@ -97,12 +108,6 @@
             <div class="row">
                 <div class="col-12 text-center">
                     <p class="margin-bottom-zero">The game of set - adaptation by nik and ryan</p>
-                </div>
-                <div class="col-12 text-center">
-                    <p class="margin-bottom-zero">User Score: <span id="scoreboard"></span></p>
-                </div>
-                <div class="col-12 text-center">
-                    <p class="margin-bottom-zero">Time remaining: <span id="timer"></span></p>
                 </div>
             </div>
         </div>
@@ -115,8 +120,8 @@
     <script src="config.js"></script>
     <script src="auth.js"></script>
     <script src="js/navbar-basic.js"></script>
-    <script src="js/modal.js"></script>
     <script src="logic.js"></script>
+    <script src="js/modal.js"></script>
 </body>
 
 </html>

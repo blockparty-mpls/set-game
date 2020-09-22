@@ -19,9 +19,22 @@ modalClicks.forEach(modal => {
         let modalTarget = e.target.getAttribute('data-target');
         let modalElement = document.getElementById(modalTarget);
         modalOverlayElement = `<div class="modal-overlay"></div>`;
-        modalElement.insertAdjacentHTML('afterend', modalOverlayElement);
-        modalElement.classList.toggle('open');
-        modalElement.classList.add('modal-fade-in');
+        // exit game if user wants to sign in/sign up
+        if(isPlayingGame) {
+            if(confirm('Do you want to exit the game?')) {
+                showHomeScreen();
+                // endGame();
+                modalElement.insertAdjacentHTML('afterend', modalOverlayElement);
+                modalElement.classList.toggle('open');
+                modalElement.classList.add('modal-fade-in');
+            } else {
+                console.log('still playing the game')
+            }
+        } else {
+            modalElement.insertAdjacentHTML('afterend', modalOverlayElement);
+            modalElement.classList.toggle('open');
+            modalElement.classList.add('modal-fade-in');
+        }
     });
 });
 

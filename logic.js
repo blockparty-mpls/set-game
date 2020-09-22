@@ -4,9 +4,10 @@ let userScore = 0;
 const scoreboard = document.getElementById('scoreboard');
 const timerBox = document.getElementById('timer');
 let timeRemaining = 60;
-var gameboard = document.getElementById('gameboard');
+const gameboard = document.getElementById('gameboard');
+const gameDetails = document.getElementById('game-details');
 var timer;
-
+let isPlayingGame = false;
 
 //make the deck 
 
@@ -40,9 +41,6 @@ var getDeck = function(){
     }
 }
 
-// TODO: put this in a separate 'start' function 
-getDeck();
-
 //Create a timer function
 function startTimer () {
     
@@ -50,7 +48,11 @@ function startTimer () {
         console.log("Time's up!");
         clearInterval(timer);
         timerBox.innerText = `Time is up!`;
-        endGame();
+        if(isPlayingGame) {
+            endGame();
+        } else {
+            showHomeScreen();
+        }
         return
     };
     
@@ -58,15 +60,19 @@ function startTimer () {
     timeRemaining--;
 }
 
-// var timer = setInterval(startTimer, 1000);
-
 var endGame = function() {
+
+    // update game status
+    isPlayingGame = false;
+
+    // reset the timer
+    timeRemaining = 0;
     
     //clear the cards from the board
     gameboard.innerHTML = "";
 
     //render a 'game over' message
-    gameboard.innerHTML = `<h2>Game Over!</h2>`;
+    gameboard.innerHTML = `<div id="game-over"><h2>Game Over!</h2></div>`;
 
     //render a button which would allow the user to start a new game
     var restartBtn = document.createElement('button');
@@ -77,7 +83,7 @@ var endGame = function() {
     });
     
     console.log(restartBtn);
-    gameboard.appendChild(restartBtn);
+    document.getElementById('game-over').appendChild(restartBtn);
 }
 
 
@@ -108,16 +114,6 @@ var shuffle = function(array) {
     return array;
 
 };
-
-deck = shuffle(deck);
-
-// // write a function that initially deals the cards
-// function deal(cardNumber){
-//     // grab the number of cards from the deck
-//     var cards = deck.slice(0, cardNumber);
-//     deck.splice(0, cardNumber);
-//     return cards;
-// };
 
 // Function to display the dealt cards in the UI
 function deal(cards) {
@@ -163,7 +159,6 @@ function deal(cards) {
 
 };
 
-
 // create the function to handle clicks on the cards
 var clickHandler = function (event) {
     
@@ -195,9 +190,6 @@ var clickHandler = function (event) {
        checkSet(chosenCards);
     }
 };
-
-// // create new variable for the dealt cards at start of game
-// let dealtCards = deal(12);
 
 // ==========================================
 // GAME LOGIC
@@ -267,26 +259,26 @@ var checkSet = function(selected) {
         } 
     } else {
         console.log(deck);
-        if (deck.length > 0) {
-            console.log(deck);
-            replaceCards(); 
-        }
+        // if (deck.length > 0) {
+        //     console.log(deck);
+        //     replaceCards(); 
+        // }
 
         // TODO: this is for testing without getting a 'set' - need to replace with commented out code
         //return;
 
         // use a timeout for UI purposes
-        // setTimeout(() => {
-        // chosenCards.forEach(card => {
-        //     chosenCards = [];
-        //     // get the current ID for each chosen card
-        //     cardId = card.id;
-        //     // create reference for that element in the dom to which append the new data and shape divs
-        //     cardEl = document.querySelector(`[data-id=${CSS.escape(cardId)}]`);
-        //         // remove the clicked class box shadow styles
-        //         cardEl.classList.remove('clicked');
-            // });
-    //     }, 200);
+        setTimeout(() => {
+        chosenCards.forEach(card => {
+            chosenCards = [];
+            // get the current ID for each chosen card
+            cardId = card.id;
+            // create reference for that element in the dom to which append the new data and shape divs
+            cardEl = document.querySelector(`[data-id=${CSS.escape(cardId)}]`);
+                // remove the clicked class box shadow styles
+                cardEl.classList.remove('clicked');
+            });
+        }, 200);
     };
 };
 
@@ -353,6 +345,9 @@ I also combined the 'deal' function with the 'dealCards' function...now there's 
 as an argument for the number of cards that you want to deal. The startGame function will also start the timer. 
 */
 function startGame() {
+
+    // update the game status
+    isPlayingGame = true;
     //clear the instructions
     gameboard.innerHTML = ``;
     //empty the deck array
@@ -362,15 +357,81 @@ function startGame() {
     //shuffle the deck
     shuffle(deck);
     //refill the timer
-    timeRemaining = 60;
+    timeRemaining = 15;
 
     //start the timer
     timer = setInterval(startTimer, 1000);
+
+    // display the game details over cards
+    gameDetails.style.display = 'flex';
 
     //deal 12 cards
     deal(12);
 };
 
+function showHomeScreen() {
+    
+    // update game status
+    isPlayingGame = false;
+
+    // reset the timer
+    timeRemaining = 0;
+    
+    //clear the cards from the board
+    gameboard.innerHTML = "";
+
+    //render a 'game over' message
+    gameboard.innerHTML = `
+        <div id="rules" class="col">
+            <h1>Set - A card-based game of logic</h1>
+            <h4>How does it work?</h4>
+            <p>The objective of the game is to find 'sets'. You have sixty seconds to find as many sets as you
+                can. Each time you find a valid set, 5 seconds will be added to the game clock.</p>
+            <h4>What makes a set?</h4>
+            <p>Each card has four attributes: color (red, green, or purple), shape (diamond, circle, or 'leaf'),
+                clarity (transparent, shaded, opaque), and number (1, 2, 3).
+                A valid 'set' consists of three cards wherein each attribute is identical or unique across all
+                three.
+            </p>
+            <h4>What??</h4>
+            <p>Here is an example:</p>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-3 col-med-4">
+                        <div class="game-card grow-center" data-id="4" data-color="green" data-num="3"
+                            data-shape="diamond" data-clarity="transparent">
+                            <div class="green diamond transparent"></div>
+                            <div class="green diamond transparent"></div>
+                            <div class="green diamond transparent"></div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-med-4">
+                        <div class="game-card grow-center" data-id="4" data-color="green" data-num="3"
+                            data-shape="diamond" data-clarity="transparent"></div>
+                    </div>
+                    <div class="col-lg-3 col-med-4">
+                        <div class="game-card grow-center" data-id="4" data-color="green" data-num="3"
+                            data-shape="diamond" data-clarity="transparent"></div>
+                    </div>
+                </div>
+            </div>
+            <p>The example above would be a valid set because...</p>
+        </div>
+    `;
+
+    //render a button which would allow the user to start a new game
+    var startBtn = document.createElement('button');
+    startBtn.innerText = 'Start the game!';
+    
+    startBtn.addEventListener('click', function(){
+        startGame();
+    });
+    
+    document.getElementById('rules').appendChild(startBtn);
+}
+
+// add click handler to document for card clicks
 document.addEventListener('click', clickHandler, false);
 
-document.querySelector(`#start-game`).addEventListener('click', startGame);
+// dynamically show the start screen on page load
+showHomeScreen();
