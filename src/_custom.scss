@@ -4,6 +4,8 @@
 *
 */
 
+@import 'https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap';
+
 $color-red: red;
 $color-green: green;
 $color-purple: purple;
@@ -36,13 +38,23 @@ body {
   text-align: center;
 }
 
+.example-list {
+  list-style: none;
+}
+
 #game-details {
   display: none;
+  margin-bottom: 2.5rem;
 
   span {
     display: inline-block;
     min-width: 2.5rem;
   }
+}
+
+.check-set {
+  height: 2.5rem;
+  margin-top: 1.5rem;
 }
 
 .main {
@@ -61,6 +73,10 @@ body {
     box-shadow: 0 2px 5px $color-grey-dark;
     cursor: pointer;
     transition: transform .2s ease-out;
+
+    &__example {
+      pointer-events: none;
+    }
   }
 
 // animation classes for selected cards

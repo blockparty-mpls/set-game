@@ -9,8 +9,8 @@
 //=====================================================
 
 // Grayscale first design palette
-$color-primary: #424242;
-$color-secondary: #757575;
+$color-primary: #383D4A;
+$color-secondary: #D0E1F9;
 $color-tertiary: #9e9e9e;
 $color-quarternary: #e0e0e0;
 
@@ -43,7 +43,7 @@ $color-link-hover: darken($color-link, 10%);
 
 $x-small: 480px;
 $small: 850px;
-$medium: 992px;
+$medium: 1170px;
 $large: 1200px;
 
 // Sets the width of the containers
@@ -74,13 +74,13 @@ $base-font-size: 62.5%;
 $base-line-height: 1.6;
 
 // Global
-$font-family-primary: "Roboto", "Arial", sans-serif;
+$font-family-primary: 'IBM Plex Sans', sans-serif;
 $font-color-primary: $color-grey-dark;
 $font-color-secondary: $color-grey-light;
 $font-size-primary: 1.6rem;
 
 // Headings
-$heading-font-family-primary: "Roboto", "Arial", sans-serif; 
+$heading-font-family-primary: 'IBM Plex Sans', sans-serif; 
 $heading-font-color-primary: $color-grey-dark;
 $heading-font-color-secondary: $color-grey-light;
 $heading-font-weight: 600;
