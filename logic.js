@@ -271,7 +271,6 @@ var checkSet = function(selected) {
     var clarity = checkClarity();
 
     if (color === true && number === true && shape === true && clarity === true){
-        console.log("You found a set!");
         checkSetMessage.innerText = 'You found a set!';
         userScore ++;
         timeRemaining += 6;
@@ -280,17 +279,15 @@ var checkSet = function(selected) {
         if (deck.length > 0) {
             console.log(deck);
             replaceCards(); 
-        } 
+        }
     } else {
-        console.log(deck);
-
+        // console.log(deck);
         checkSetMessage.innerText = 'That is not a set.'
 
         // if (deck.length > 0) {
         //     console.log(deck);
         //     replaceCards(); 
         // }
-
         // TODO: this is for testing without getting a 'set' - need to replace with commented out code
         //return;
 
@@ -309,19 +306,30 @@ var checkSet = function(selected) {
     };
 };
 
+// TODO: fix this function to remove the last cards after deck is empty
+// var removeCards = function() {
+//     // use a timeout for UI purposes 
+//     // setTimeout(() => {
+//         chosenCards.forEach((card, index) => {
+            
+//             // get the current ID for each chosen card
+//             cardId = card.id;
+//             // create reference for that element in the dom to which append the new data and shape divs
+//             cardEl = document.querySelector(`[data-id=${CSS.escape(cardId)}]`);
+//             // remove the clicked class box shadow styles
+//             cardEl.classList.remove('clicked');
+//             // add the animation class
+//             cardEl.classList.add('shrink');
+//         });
+//         // reset the array of clicked cards
+//     chosenCards = [];
+//     // }, 200);
+// }
+
 
 var replaceCards = function () {
     // create variable for the array of replacement cards
-    console.log(deck);
-    // if (deck.length < 3) {
-    //     let replacementCards = deck.slice(0, deck.length);
-    //     deck.splice(0, deck.length);
-    // } else {
-    //     let replacementCards = deck.slice(0, 3);
-    //     deck.splice(0, 3);
-    //     console.log('replacementCards cards: ', replacementCards)
-    // }
-
+    // console.log(deck);
     let replacementCards = deck.slice(0, 3);
         deck.splice(0, 3);
         console.log('replacementCards cards: ', replacementCards)
@@ -481,7 +489,6 @@ document.addEventListener('click', clickHandler, false);
 db.collection('userScores').orderBy("score", "desc").limit(5).onSnapshot(snapshot => {
     playerScores.innerHTML = '';
     snapshot.forEach(item => {
-        console.log(item.data());
         renderLeaderboard(item);
     });
 });
