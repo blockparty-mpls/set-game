@@ -433,7 +433,7 @@ function showHomeScreen() {
                 A valid 'set' consists of three cards wherein each attribute is identical or unique across all
                 three.
             </p>
-            <h4>What??</h4>
+            <h4>Can</h4>
             <p>Here is an example:</p>
             <div class="container">
                 <div class="row">
@@ -465,7 +465,7 @@ function showHomeScreen() {
                 <li>...the <strong>shapes</strong> are all <strong>identical</strong> (each card is a diamond)</li>
                 <li>...the <strong>numbers</strong> are all <strong>unique</strong> (1, 2, and 3)</li>
                 <li>...the <strong>shades</strong> are all <strong>unique</strong> (transparent, shaded, and opaque)</li>
-                <li>...the <strong>colors</strong>colors are all <strong>unique</strong> (red, green, and purple)</li>
+                <li>...the <strong>colors</strong> are all <strong>unique</strong> (red, green, and purple)</li>
             </ul>
             <p>Again, as long as each trait is either totally identical or totally unique across the three cards that you pick, you've got a set!</p>
         </div>
