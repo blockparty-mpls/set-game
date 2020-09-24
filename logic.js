@@ -433,7 +433,7 @@ function showHomeScreen() {
                 A valid 'set' consists of three cards wherein each attribute is identical or unique across all
                 three.
             </p>
-            <h4>What??</h4>
+            <h4>Can you show me an example??</h4>
             <p>Here is an example:</p>
             <div class="container">
                 <div class="row">
