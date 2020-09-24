@@ -1814,6 +1814,9 @@ body.dimmed {
 .text-justify {
   text-align: justify; }
 
+.font-heavy {
+  font-weight: 700; }
+
 .img-100 {
   width: 100%;
   height: auto; }
@@ -1927,6 +1930,11 @@ body {
 .example-list {
   list-style: none; }
 
+.rendered-button {
+  letter-spacing: 1px;
+  padding: 1.5rem;
+  border-color: #D0E1F9; }
+
 #game-details {
   display: none;
   margin-bottom: 2.5rem; }
@@ -1935,8 +1943,10 @@ body {
     min-width: 2.5rem; }
 
 .check-set {
-  height: 2.5rem;
-  margin-top: 1.5rem; }
+  height: 4.5rem;
+  margin-top: 1.5rem;
+  padding: 1rem 2rem;
+  border-radius: 100rem; }
 
 .main {
   padding: 2.5rem 0; }
@@ -2019,8 +2029,23 @@ body {
 .grow-center {
   animation: grow-center .5s ease-out; }
 
+.flash {
+  animation: flash .2s infinite; }
+
 @keyframes grow-center {
   0% {
     transform: scale(0); }
   100% {
     transform: scale(1); } }
+
+@keyframes flash {
+  0% {
+    background-color: #eee; }
+  49% {
+    background-color: #eee; }
+  50% {
+    background-color: #D0E1F9; }
+  99% {
+    background-color: #D0E1F9; }
+  100% {
+    background-color: #eee; } }
