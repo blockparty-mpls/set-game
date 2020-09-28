@@ -161,7 +161,7 @@ function deal(cards) {
         // add data attributes to 'game-card' div
         let newCard = `
             <div class="col-lg-3 col-med-4">
-                <div class="game-card grow-center" data-id=${i} data-color=${card.color} data-num=${card.num} data-shape=${card.shape} data-clarity=${card.clarity}>
+                <div aria-live="polite" class="game-card grow-center" data-id=${i} data-color=${card.color} data-num=${card.num} data-shape=${card.shape} data-clarity=${card.clarity}>
                     ${shapes}
                 </div>
             </div>
