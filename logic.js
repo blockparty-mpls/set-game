@@ -100,6 +100,7 @@ var endGame = function() {
 
     //render a button which would allow the user to start a new game
     var restartBtn = document.createElement('button');
+    restartBtn.classList.add('rendered-button');
     restartBtn.innerText = 'Play Again?';
     
     restartBtn.addEventListener('click', function(){
@@ -271,25 +272,23 @@ var checkSet = function(selected) {
     var clarity = checkClarity();
 
     if (color === true && number === true && shape === true && clarity === true){
-        checkSetMessage.innerText = 'You found a set!';
         userScore ++;
         timeRemaining += 6;
         scoreboard.innerHTML = userScore;
-        
-        if (deck.length > 0) {
-            console.log(deck);
-            replaceCards(); 
-        }
-    } else {
-        // console.log(deck);
-        checkSetMessage.innerText = 'That is not a set.'
+        flashMessage('You found a set!');
 
-        // if (deck.length > 0) {
-        //     console.log(deck);
-        //     replaceCards(); 
-        // }
-        // TODO: this is for testing without getting a 'set' - need to replace with commented out code
-        //return;
+        // if deck runs out shuffle up a new one so gameplay does not end
+        if (!deck.length) {
+            //generate a new deck
+            getDeck();
+            //shuffle the deck
+            shuffle(deck);
+        }
+        // replace the three cards that made the set
+        replaceCards(); 
+
+    } else {
+        flashMessage('That is not a set :(');
 
         // use a timeout for UI purposes
         setTimeout(() => {
@@ -306,26 +305,14 @@ var checkSet = function(selected) {
     };
 };
 
-// TODO: fix this function to remove the last cards after deck is empty
-// var removeCards = function() {
-//     // use a timeout for UI purposes 
-//     // setTimeout(() => {
-//         chosenCards.forEach((card, index) => {
-            
-//             // get the current ID for each chosen card
-//             cardId = card.id;
-//             // create reference for that element in the dom to which append the new data and shape divs
-//             cardEl = document.querySelector(`[data-id=${CSS.escape(cardId)}]`);
-//             // remove the clicked class box shadow styles
-//             cardEl.classList.remove('clicked');
-//             // add the animation class
-//             cardEl.classList.add('shrink');
-//         });
-//         // reset the array of clicked cards
-//     chosenCards = [];
-//     // }, 200);
-// }
-
+var flashMessage = function(message) {
+    checkSetMessage.innerHTML = `<p>${message}</p>`;
+    checkSetMessage.classList.add('flash');
+    setTimeout(() => {
+        checkSetMessage.classList.remove('flash');
+        checkSetMessage.innerHTML = '';
+    }, 2000);
+}
 
 var replaceCards = function () {
     // create variable for the array of replacement cards
@@ -473,6 +460,7 @@ function showHomeScreen() {
 
     //render a button which would allow the user to start a new game
     var startBtn = document.createElement('button');
+    startBtn.classList.add('rendered-button');
     startBtn.innerText = 'Start the game!';
     
     startBtn.addEventListener('click', function(){
