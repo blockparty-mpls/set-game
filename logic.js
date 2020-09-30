@@ -78,6 +78,9 @@ var endGame = function() {
     // update game status
     isPlayingGame = false;
 
+    // Clear the clicked cards array
+    chosenCards = [];
+
     // reset the timer
     timeRemaining = 0;
 
